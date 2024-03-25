@@ -69,7 +69,7 @@ export default function Navbar() {
     <>
       <nav
         ref={ref}
-        className={`main-container py-4 md:py-6 top-0 left-0 w-full z-50 ${
+        className={`main-container py-4 2xl:py-5 top-0 left-0 w-full z-50 ${
           showScrollNav ? "fixed animate-fade-in bg-black" : "absolute"
         }`}
       >
@@ -112,7 +112,7 @@ export default function Navbar() {
                     }}
                     className={`${btn.buttonBgColor} m-[2px] rounded-none font-bold italic blob relative overflow-hidden`}
                   >
-                    <Link href={btn.link} className="relative z-20">
+                    <Link href={btn.link} className="relative z-20 w-full">
                       {btn.label}
                     </Link>
                   </Button>

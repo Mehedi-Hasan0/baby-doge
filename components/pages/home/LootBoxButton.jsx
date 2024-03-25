@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useRef } from "react";
 
-const BannerButton = () => {
-  const buttonRefs = buttonData.map(() => useRef(null));
+const LootboxButton = () => {
+  const buttonRefs = useRef(null);
 
   const handleBlobMoving = (e, btnRef) => {
     if (btnRef.current) {
@@ -29,10 +29,10 @@ const BannerButton = () => {
               ? "col-start-1 col-end-4"
               : "col-start-4 col-end-7"
           }  overflow-hidden blob relative`}
-          ref={buttonRefs[i]}
+          ref={buttonRefs}
           style={{ "--clr": `${btn.blobColor}` }}
           onMouseMove={(e) => {
-            handleBlobMoving(e, buttonRefs[i]);
+            handleBlobMoving(e, buttonRefs);
           }}
         >
           <Button
@@ -50,7 +50,7 @@ const BannerButton = () => {
   );
 };
 
-export default BannerButton;
+export default LootboxButton;
 
 export const buttonData = [
   {
@@ -59,19 +59,5 @@ export const buttonData = [
     parentBorderColor: "bg-gradient-to-b from-[#C8AA6E] to-[#7A5C29]",
     buttonBgColor: "bg-gradient-to-b from-[#FFC7004D] to-[#FFC70000]",
     blobColor: "#FFC7004D",
-  },
-  {
-    label: "BABYDOGE",
-    link: "#",
-    parentBorderColor: "bg-gradient-to-b from-[#C7C7C7] to-[#4B4B4B]",
-    buttonBgColor: "bg-gradient-to-b from-[#C7C7C74D] to-[#BBBBBB00]",
-    blobColor: "#C7C7C74D",
-  },
-  {
-    label: "KATANAINU",
-    link: "#",
-    parentBorderColor: "bg-gradient-to-b from-[#C7C7C7] to-[#4B4B4B]",
-    buttonBgColor: "bg-gradient-to-b from-[#C7C7C74D] to-[#BBBBBB00]",
-    blobColor: "#C7C7C74D",
   },
 ];

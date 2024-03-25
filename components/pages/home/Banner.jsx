@@ -3,7 +3,7 @@ import BannerButton from "./BannerButton";
 
 export default function Banner() {
   return (
-    <div className="text-white bg-[url('/assets/images/mobile-bg.webp')] sm:bg-[url('/assets/images/sm-banner-bg.webp'), url('/assets/images/bannerbg.webp')] md:bg-[url('/assets/images/md-banner-bg.webp'), url('/assets/images/bannerbg.webp')] lg:bg-[url('/assets/images/bannerbg.webp')] bg-cover pt-44 md:pt-24 relative min-h-[900px] lg:min-h-[600px] xl:min-h-[700px] 2xl:min-h-[1024px] flex items-center">
+    <div className="text-white bg-[url('/assets/images/mobile-bg.webp')] sm:bg-[url('/assets/images/sm-banner-bg.webp'), url('/assets/images/bannerbg.webp')] md:bg-[url('/assets/images/md-banner-bg.webp'), url('/assets/images/bannerbg.webp')] lg:bg-[url('/assets/images/bannerbg.webp')] bg-cover pt-44 md:pt-24 relative min-h-[900px] lg:min-h-[600px] xl:min-h-[700px] 2xl:min-h-[1024px] flex items-center overflow-hidden">
       <section className="flex flex-col-reverse lg:flex-row items-center justify-between main-container">
         <div className="flex flex-col justify-center items-center lg:justify-start lg:items-start gap-3 sm:gap-5 flex-1 sm:w-full mt-96 sm:mt-[750px] md:mt-[1050px] lg:mt-0 lg:w-1/2 lg:my-10 xl:my-10 w-[320px] mx-auto">
           <h1 className="uppercase font-bold leading-[0.9] banner-heading">
