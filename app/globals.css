@@ -13,6 +13,10 @@ body {
   perspective: 120px;
 }
 
+.banner-btn {
+  width: calc(100% - 4px);
+}
+
 .blob::before {
   content: "";
   position: absolute;
@@ -28,6 +32,38 @@ body {
 
 .blob:hover::before {
   opacity: 1;
+}
+
+@media (min-width: 1920px) {
+  .banner-heading {
+    font-size: 138px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .banner-heading {
+    font-size: 120px;
+  }
+}
+@media (1024px < width < 1536px) {
+  .banner-heading {
+    font-size: 70px;
+  }
+}
+@media (768px < width < 1024px) {
+  .banner-heading {
+    font-size: 100px;
+  }
+}
+@media (640px < width < 768px) {
+  .banner-heading {
+    font-size: 96px;
+  }
+}
+@media (0 < width < 640px) {
+  .banner-heading {
+    font-size: 56px;
+  }
 }
 
 @layer base {

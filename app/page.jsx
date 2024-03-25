@@ -1,5 +1,9 @@
+import Banner from "@/components/pages/home/Banner";
+
 export default function Home() {
   return (
-    <main className="flex justify-between items-center main-container"></main>
+    <main>
+      <Banner />
+    </main>
   );
 }
