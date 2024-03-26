@@ -57,6 +57,10 @@ body {
   background-position: right;
 }
 
+.swiper-wrapper {
+  align-items: center;
+}
+
 @media (min-width: 1920px) {
   .banner-heading {
     font-size: 138px;
@@ -73,6 +77,10 @@ body {
   .loot-box-container .card-frame {
     width: 700px;
     height: 750px;
+  }
+
+  .sec-7-container {
+    height: 900px;
   }
 }
 
