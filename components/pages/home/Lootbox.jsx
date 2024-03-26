@@ -26,7 +26,12 @@ export default function Lootbox() {
   };
 
   return (
-    <div className="text-white section-padding overflow-hidden bg-[url('/assets/images/banner-bg-2.webp')] bg-cover bg-center">
+    <div
+      onMouseLeave={() =>
+        setImageParentHover(Array(lootboxData.length).fill(false))
+      }
+      className="text-white section-padding overflow-hidden bg-[url('/assets/images/banner-bg-2.webp')] bg-cover bg-center"
+    >
       <div className="main-container">
         <div className="flex flex-col justify-center items-center">
           <h2 className=" flex items-center gap-1 sm:gap-5 text-xl sm:text-4xl xl:text-5xl 2xl:text-6xl font-medium whitespace-nowrap">
@@ -127,20 +132,20 @@ export default function Lootbox() {
             {lootboxData.map((data, i) => (
               <div
                 key={i}
-                className={`grid sm:grid-cols-10 cursor-pointer`}
+                className={`grid grid-cols-1 sm:grid-cols-10 cursor-pointer`}
                 onMouseLeave={() => handleMouseLeave(i)}
               >
                 <div
                   className={` ${
                     i === 0
-                      ? "col-start-3 col-span-8"
+                      ? "sm:col-start-3 sm:col-span-8"
                       : i === 1
-                      ? "col-start-2 col-span-9"
+                      ? "sm:col-start-2 sm:col-span-9"
                       : i === 2
-                      ? "col-start-1 col-span-10"
+                      ? "sm:col-start-1 sm:col-span-10"
                       : i === 3
-                      ? "col-start-2 col-span-9"
-                      : "col-start-3 col-span-8"
+                      ? "sm:col-start-2 sm:col-span-9"
+                      : "sm:col-start-3 sm:col-span-8"
                   }`}
                 >
                   <div
