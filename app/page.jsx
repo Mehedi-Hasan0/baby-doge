@@ -1,7 +1,13 @@
 import Banner from "@/components/pages/home/Banner";
-import Characters from "@/components/pages/home/Characters";
+// import Characters from "@/components/pages/home/Characters";
 import LootBoxDetails from "@/components/pages/home/LootBoxDetails";
 import Lootbox from "@/components/pages/home/Lootbox";
+import MintingDetails from "@/components/pages/home/MintingDetails";
+import dynamic from "next/dynamic";
+
+const Characters = dynamic(() => import("@/components/pages/home/Characters"), {
+  ssr: false,
+});
 
 export default function Home() {
   return (
@@ -10,6 +16,7 @@ export default function Home() {
       <Lootbox />
       <Characters />
       <LootBoxDetails />
+      <MintingDetails />
     </main>
   );
 }
