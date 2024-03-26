@@ -17,6 +17,30 @@ const BannerButton = () => {
     }
   };
 
+  const buttonData = [
+    {
+      label: "WHITELIST NOW",
+      link: "#",
+      parentBorderColor: "bg-gradient-to-b from-[#C8AA6E] to-[#7A5C29]",
+      buttonBgColor: "bg-gradient-to-b from-[#FFC7004D] to-[#FFC70000]",
+      blobColor: "#FFC7004D",
+    },
+    {
+      label: "BABYDOGE",
+      link: "#",
+      parentBorderColor: "bg-gradient-to-b from-[#C7C7C7] to-[#4B4B4B]",
+      buttonBgColor: "bg-gradient-to-b from-[#C7C7C74D] to-[#BBBBBB00]",
+      blobColor: "#C7C7C74D",
+    },
+    {
+      label: "KATANAINU",
+      link: "#",
+      parentBorderColor: "bg-gradient-to-b from-[#C7C7C7] to-[#4B4B4B]",
+      buttonBgColor: "bg-gradient-to-b from-[#C7C7C74D] to-[#BBBBBB00]",
+      blobColor: "#C7C7C74D",
+    },
+  ];
+
   return (
     <div className="grid grid-cols-6 gap-3 max-w-[320px] md:max-w-[400px] mt-5 lg:mt-0 2xl:mt-3">
       {buttonData.map((btn, i) => (
@@ -51,27 +75,3 @@ const BannerButton = () => {
 };
 
 export default BannerButton;
-
-export const buttonData = [
-  {
-    label: "WHITELIST NOW",
-    link: "#",
-    parentBorderColor: "bg-gradient-to-b from-[#C8AA6E] to-[#7A5C29]",
-    buttonBgColor: "bg-gradient-to-b from-[#FFC7004D] to-[#FFC70000]",
-    blobColor: "#FFC7004D",
-  },
-  {
-    label: "BABYDOGE",
-    link: "#",
-    parentBorderColor: "bg-gradient-to-b from-[#C7C7C7] to-[#4B4B4B]",
-    buttonBgColor: "bg-gradient-to-b from-[#C7C7C74D] to-[#BBBBBB00]",
-    blobColor: "#C7C7C74D",
-  },
-  {
-    label: "KATANAINU",
-    link: "#",
-    parentBorderColor: "bg-gradient-to-b from-[#C7C7C7] to-[#4B4B4B]",
-    buttonBgColor: "bg-gradient-to-b from-[#C7C7C74D] to-[#BBBBBB00]",
-    blobColor: "#C7C7C74D",
-  },
-];
