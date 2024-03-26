@@ -12,8 +12,8 @@ import WeaponNft from "@/components/pages/home/WeaponNft";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import Loader from "./loading";
-import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
+import Navbars from "@/components/shared/Navbars";
 
 const Characters = dynamic(() => import("@/components/pages/home/Characters"), {
   ssr: false,
@@ -34,7 +34,7 @@ export default function Home() {
 
   return (
     <>
-      <Navbar />
+      <Navbars />
       <main>
         <Banner />
         <Lootbox />
