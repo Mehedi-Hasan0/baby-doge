@@ -51,7 +51,7 @@ export default function WeaponNft() {
   }
 
   return (
-    <section className="text-white section-padding overflow-hidden">
+    <section className="text-white section-padding overflow-hidden min-h-[1000px]">
       <div className="main-container">
         <div className="py-8 flex flex-col justify-center items-center">
           <Image

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 export default function LootBoxDetails() {
   const [imageHeight, setImageHeight] = useState(null);
@@ -38,10 +39,44 @@ export default function LootBoxDetails() {
     }
   };
 
+  const textVariant = {
+    initial: {
+      opacity: 0,
+      y: 30,
+      transition: { duration: 0.75 },
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.75 },
+    },
+  };
+
+  const CardVariant = {
+    initial: {
+      opacity: 0.5,
+      y: 30,
+      transition: { duration: 0.9 },
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.9 },
+    },
+  };
+
   return (
     <section className="text-white section-padding overflow-hidden bg-[url('/assets/images/banner-bg-4.webp')] bg-cover bg-center min-h-[1000px] my-8">
       <div className="main-container">
-        <div className="flex flex-col justify-center items-center">
+        <motion.div
+          className="flex flex-col justify-center items-center"
+          variants={textVariant}
+          initial="initial"
+          whileInView="animate"
+          // viewport={{
+          //   once: true,
+          // }}
+        >
           <h2 className=" flex items-center gap-1 sm:gap-5 text-xl sm:text-4xl xl:text-5xl 2xl:text-6xl font-medium whitespace-nowrap">
             <span className="text-yellow2">Katana Inu</span>
             <Image
@@ -53,13 +88,19 @@ export default function LootBoxDetails() {
             />
             <span className="text-yellowRed">Baby Doge Loot Box</span>
           </h2>
-        </div>
+        </motion.div>
 
         <div className="flex flex-col lg:flex-row items-center justify-evenly gap-8 max-w-[1077px] mx-auto mt-8 sm:mt-12 md:mt-16 lg:mt-20">
           {/* left card */}
-          <div
+          <motion.div
             className="flex flex-col justify-center items-center relative"
             style={{ minHeight: `${imageHeight}` }}
+            variants={CardVariant}
+            initial="initial"
+            whileInView="animate"
+            // viewport={{
+            //   once: true,
+            // }}
           >
             <Image
               src={"/assets/images/card-frame.webp"}
@@ -118,9 +159,17 @@ export default function LootBoxDetails() {
               ))}
               <p>Supported by</p>
             </div>
-          </div>
+          </motion.div>
           {/* right card */}
-          <div className="flex flex-col justify-center items-center relative">
+          <motion.div
+            className="flex flex-col justify-center items-center relative"
+            variants={CardVariant}
+            initial="initial"
+            whileInView="animate"
+            // viewport={{
+            //   once: true,
+            // }}
+          >
             <Image
               src={"/assets/images/card-frame.webp"}
               alt="card frame"
@@ -145,7 +194,7 @@ export default function LootBoxDetails() {
                 </span>
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

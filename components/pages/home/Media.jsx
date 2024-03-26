@@ -1,12 +1,33 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function Media() {
+  const textVariant = {
+    initial: {
+      opacity: 0,
+      y: 20,
+      transition: { duration: 0.9 },
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.9 },
+    },
+  };
   return (
     <section className="text-white section-padding overflow-hidden">
       <div className="main-container">
-        <div className="py-8 flex flex-col justify-center items-center">
+        <motion.div
+          className="py-8 flex flex-col justify-center items-center"
+          variants={textVariant}
+          initial="initial"
+          whileInView="animate"
+          // viewport={{
+          //   once: true,
+          // }}
+        >
           <Image
             src={"/assets/icons/text-top.svg"}
             alt=""
@@ -16,9 +37,17 @@ export default function Media() {
           <h5 className="uppercase text-base sm:text-lg md:text-xl font-bold tracking-[5px]">
             Media
           </h5>
-        </div>
+        </motion.div>
 
-        <div className="bg-[url('/assets/icons/frame.svg')] bg-contain bg-no-repeat w-full sm:min-h-[600px] mt-8 sm:mt-10 md:mt-12 lg:mt-16 p-4 sm:px-8 sm:py-10 lg:px-20 pb-10 relative">
+        <motion.div
+          className="bg-[url('/assets/icons/frame.svg')] bg-contain bg-no-repeat w-full sm:min-h-[600px] mt-8 sm:mt-10 md:mt-12 lg:mt-16 p-4 sm:px-8 sm:py-10 lg:px-20 pb-10 relative"
+          variants={textVariant}
+          initial="initial"
+          whileInView="animate"
+          // viewport={{
+          //   once: true,
+          // }}
+        >
           <Image
             src={"/assets/images/media-1.png"}
             alt="meadi1"
@@ -77,7 +106,7 @@ export default function Media() {
               className="absolute bottom-4"
             />
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

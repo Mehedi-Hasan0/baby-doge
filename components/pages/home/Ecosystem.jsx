@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
+import { motion } from "framer-motion";
 
 export default function Ecosystem() {
   const buttonRefs = buttonData.map(() => useRef(null));
@@ -17,8 +18,29 @@ export default function Ecosystem() {
     }
   };
 
+  const textVariant = {
+    initial: {
+      opacity: 0,
+      y: 20,
+      transition: { duration: 0.9 },
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.9 },
+    },
+  };
+
   return (
-    <section className="text-white overflow-hidden lg:bg-[url('/assets/images/banner-bg-7.png')] bg-cover bg-center md:min-h-[500px] lg:min-h-[700px] 2xl:min-h-[800px] sec-7-container">
+    <motion.section
+      className="text-white overflow-hidden lg:bg-[url('/assets/images/banner-bg-7.png')] bg-cover bg-center md:min-h-[500px] lg:min-h-[700px] 2xl:min-h-[800px] sec-7-container"
+      variants={textVariant}
+      initial="initial"
+      whileInView="animate"
+      // viewport={{
+      //   once: true,
+      // }}
+    >
       <div className="main-container relative">
         <div className="md:bg-[url('/assets/images/sec-7-ch.png')] bg-contain bg-no-repeat w-[800px] lg:w-full md:min-h-[700px] lg:min-h-[984px] absolute top-0 -right-16 lg:right-0 z-[1]" />
         {/* content */}
@@ -67,7 +89,7 @@ export default function Ecosystem() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 
