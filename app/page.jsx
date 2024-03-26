@@ -5,6 +5,7 @@ import LootBoxDetails from "@/components/pages/home/LootBoxDetails";
 import Lootbox from "@/components/pages/home/Lootbox";
 import Media from "@/components/pages/home/Media";
 import MintingDetails from "@/components/pages/home/MintingDetails";
+import Wallet from "@/components/pages/home/Wallet";
 import WeaponNft from "@/components/pages/home/WeaponNft";
 import dynamic from "next/dynamic";
 
@@ -23,6 +24,7 @@ export default function Home() {
       <WeaponNft />
       <Media />
       <Ecosystem />
+      <Wallet />
     </main>
   );
 }

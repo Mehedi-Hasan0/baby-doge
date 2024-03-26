@@ -18,7 +18,7 @@ export default function Media() {
           </h5>
         </div>
 
-        <div className="bg-[url('/assets/icons/frame.svg')] bg-contain bg-no-repeat w-full min-h-[600px] mt-8 sm:mt-10 md:mt-12 lg:mt-16 p-4 sm:px-8 sm:py-10 lg:px-20 pb-10 relative">
+        <div className="bg-[url('/assets/icons/frame.svg')] bg-contain bg-no-repeat w-full sm:min-h-[600px] mt-8 sm:mt-10 md:mt-12 lg:mt-16 p-4 sm:px-8 sm:py-10 lg:px-20 pb-10 relative">
           <Image
             src={"/assets/images/media-1.png"}
             alt="meadi1"

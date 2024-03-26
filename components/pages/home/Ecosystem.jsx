@@ -18,17 +18,9 @@ export default function Ecosystem() {
   };
 
   return (
-    <section className="text-white overflow-hidden lg:bg-[url('/assets/images/banner-bg-7.png')] bg-cover bg-center min-h-[700px] 2xl:min-h-[800px] sec-7-container">
+    <section className="text-white overflow-hidden lg:bg-[url('/assets/images/banner-bg-7.png')] bg-cover bg-center md:min-h-[500px] lg:min-h-[700px] 2xl:min-h-[800px] sec-7-container">
       <div className="main-container relative">
-        {/* character bg */}
-        {/* <Image
-          src={"/assets/images/sec-7-ch.png"}
-          alt=""
-          width={1920}
-          height={984}
-          className="w-full min-h-[984px] absolute top-0 right-0"
-        /> */}
-        <div className="md:bg-[url('/assets/images/sec-7-ch.png')] bg-contain bg-no-repeat w-[800px] lg:w-full min-h-[984px] absolute top-0 -right-16 lg:right-0 z-[1]" />
+        <div className="md:bg-[url('/assets/images/sec-7-ch.png')] bg-contain bg-no-repeat w-[800px] lg:w-full md:min-h-[700px] lg::min-h-[984px] absolute top-0 -right-16 lg:right-0 z-[1]" />
         {/* content */}
         <div className="bg-[url('/assets/images/section-7-frame.svg')] bg-cover bg-no-repeat w-full max-h-[984px] px-8 py-10 md:p-14 lg:p-16 xl:p-20 mx-auto relative z-[2] flex md:block justify-center items-center">
           <div className=" flex flex-col gap-6 md:gap-8 justify-center items-center md:justify-start md:items-start">

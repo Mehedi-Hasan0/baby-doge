@@ -30,7 +30,7 @@ export default function Lootbox() {
       onMouseLeave={() =>
         setImageParentHover(Array(lootboxData.length).fill(false))
       }
-      className="text-white section-padding overflow-hidden bg-[url('/assets/images/banner-bg-2.webp')] bg-cover bg-center"
+      className="text-white section-padding overflow-hidden bg-[url('/assets/images/banner-bg-2.webp')] bg-cover bg-center lg:my-16"
     >
       <div className="main-container">
         <div className="flex flex-col justify-center items-center">
