@@ -31,6 +31,7 @@ module.exports = {
         yellow2: "#FFD026",
         yellowRed: "#FF7A00",
         yellowDarkRed: "#884100",
+        darkYellow: "#F8C306",
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",

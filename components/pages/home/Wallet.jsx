@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Wallet() {
   return (
-    <section className="text-white overflow-hidden section-padding lg:bg-[url('/assets/images/banner-bg-8.png')] bg-cover bg-center min-h-[700px] 2xl:min-h-[800px] lg:mt-16">
+    <section className="text-white overflow-hidden section-padding lg:bg-[url('/assets/images/banner-bg-8.png')] bg-cover bg-center min-h-[700px] 2xl:min-h-[800px] pb-10 lg:mt-16 lg:pb-20">
       <div className="main-container">
         <div className="flex flex-col justify-center items-center gap-4 mb-8 sm:mb-10 md:mb-14 lg:mb-16 xl:mb-20">
           <p className="tex-xs sm:text-base md:text-lg lg:text-[22px] font-light text-center">
