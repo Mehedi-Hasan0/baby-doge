@@ -45,6 +45,18 @@ body {
   );
 }
 
+.loot-grad-btn {
+  background-image: linear-gradient(red, yellow, green, aqua);
+  background-size: 300%;
+  background-position: left;
+  transition: background-position 1s;
+}
+
+.loot-grad-btn:hover,
+.loot-grad-btn:focus {
+  background-position: right;
+}
+
 @media (min-width: 1920px) {
   .banner-heading {
     font-size: 138px;
