@@ -12,6 +12,8 @@ import WeaponNft from "@/components/pages/home/WeaponNft";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import Loader from "./loading";
+import Navbar from "@/components/shared/Navbar";
+import Footer from "@/components/shared/Footer";
 
 const Characters = dynamic(() => import("@/components/pages/home/Characters"), {
   ssr: false,
@@ -23,24 +25,28 @@ export default function Home() {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 2500);
+    }, 2000);
   }, []);
 
-  // if (loading) {
-  //   return <Loader />;
-  // }
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
-    <main>
-      <Banner />
-      <Lootbox />
-      <Characters />
-      <LootBoxDetails />
-      <MintingDetails />
-      <WeaponNft />
-      <Media />
-      <Ecosystem />
-      <Wallet />
-    </main>
+    <>
+      <Navbar />
+      <main>
+        <Banner />
+        <Lootbox />
+        <Characters />
+        <LootBoxDetails />
+        <MintingDetails />
+        <WeaponNft />
+        <Media />
+        <Ecosystem />
+        <Wallet />
+      </main>
+      <Footer />
+    </>
   );
 }
