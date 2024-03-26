@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 export default function MintingDetails() {
   const [miningNumber, setMiningNumber] = useState(823);
@@ -12,9 +13,52 @@ export default function MintingDetails() {
     (miningNumber * 100) / totalMiningNumber
   );
 
+  const textVariant = {
+    initial: {
+      opacity: 0,
+      y: 30,
+      transition: { duration: 0.75 },
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.75 },
+    },
+  };
+  const imgVariant = {
+    initial: {
+      opacity: 0,
+      x: 20,
+      transition: { duration: 0.75 },
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.75 },
+    },
+  };
+
+  const rightCardsVariant = {
+    initial: {
+      opacity: 0,
+      x: -30,
+      transition: { duration: 0.75, ease: [0.76, 0, 0.24, 1] },
+    },
+    animate: (i) => ({
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.75,
+        delay: 0.35 * i,
+        ease: [0.76, 0, 0.24, 1],
+      },
+    }),
+  };
+
   return (
-    <section className="text-white section-padding overflow-hidden bg-none xl:bg-[url('/assets/images/banner-bg-5.webp')] bg-cover bg-center min-h-[1200px]">
+    <section className="text-white section-padding overflow-hidden bg-none xl:bg-[url('/assets/images/banner-bg-5.webp')] bg-cover bg-center min-h-[1200px] lg:mt-20">
       <div className="main-container relative">
+        {/* btn img */}
         <div className="flex justify-center items-center">
           <Image
             src={"/assets/icons/min-button.svg"}
@@ -27,7 +71,14 @@ export default function MintingDetails() {
         {/* content */}
         <div className="flex flex-col lg:grid lg:grid-cols-12 2xl:grid-cols-6 relative lg:mt-20 place-content-center items-center 2xl:mx-20 gap-10">
           {/* // mobile device show character */}
-          <div>
+          <motion.div
+            variants={textVariant}
+            initial="initial"
+            whileInView="animate"
+            // viewport={{
+            //   once: true,
+            // }}
+          >
             <Image
               src={"/assets/images/mobile-mint-ch.webp"}
               alt=""
@@ -35,19 +86,36 @@ export default function MintingDetails() {
               height={700}
               className="block lg:hidden w-[500px] relative z-[1]"
             />
-          </div>
+          </motion.div>
           {/* middle card */}
           <div className="-mt-44 lg:-mt-0 relative lg:col-start-3 lg:col-end-9 2xl:col-start-3 2xl:col-span-3">
-            <Image
-              src={"/assets/images/card-frame.webp"}
-              alt="card frame"
-              width={593}
-              height={800}
-              className="relative z-10 w-full h-[700px] sm:h-[700px] md:h-[740px] lg:h-[820px] xl:h-[780px] 2xl:h-[880px] "
-            />
+            <motion.div
+              variants={imgVariant}
+              initial="initial"
+              whileInView="animate"
+              // viewport={{
+              //   once: true,
+              // }}
+            >
+              <Image
+                src={"/assets/images/card-frame.webp"}
+                alt="card frame"
+                width={593}
+                height={800}
+                className="relative z-10 w-full h-[700px] sm:h-[700px] md:h-[740px] lg:h-[820px] xl:h-[780px] 2xl:h-[880px] "
+              />
+            </motion.div>
 
             {/* card content */}
-            <div className="px-5 py-8 sm:p-12 lg:p-14 xl:px-8 xl:py-10 2xl:p-12 absolute z-10 top-0 left-0 w-full flex flex-col gap-3">
+            <motion.div
+              className="px-5 py-8 sm:p-12 lg:p-14 xl:px-8 xl:py-10 2xl:p-12 absolute z-10 top-0 left-0 w-full flex flex-col gap-3"
+              variants={textVariant}
+              initial="initial"
+              whileInView="animate"
+              // viewport={{
+              //   once: true,
+              // }}
+            >
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-light">
                 In this lootbox, you will mint{" "}
                 <span className="text-yellow2 font-medium">1 random NFT</span>{" "}
@@ -239,12 +307,18 @@ export default function MintingDetails() {
                 </div>
               </div>
               {/* ////////////////////////////////////////////// */}
-            </div>
+            </motion.div>
           </div>
           {/* avatar */}
           <div className="lg:col-start-9 lg:col-end-13 2xl:col-start-6 text-white relative z-10 flex flex-col justify-between items-center lg:items-start">
             {avatarData.map((data, i) => (
-              <div key={i} className="">
+              <motion.div
+                key={i}
+                variants={rightCardsVariant}
+                custom={i}
+                initial="initial"
+                whileInView="animate"
+              >
                 <div
                   className={`
                    ${i === 0 ? "lg:ml-32" : i === 1 ? "lg:ml-0" : "lg:ml-32"}
@@ -257,7 +331,7 @@ export default function MintingDetails() {
                     height={178}
                   />
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

@@ -1,3 +1,5 @@
+"use client";
+
 import Banner from "@/components/pages/home/Banner";
 import Ecosystem from "@/components/pages/home/Ecosystem";
 // import Characters from "@/components/pages/home/Characters";
@@ -8,12 +10,26 @@ import MintingDetails from "@/components/pages/home/MintingDetails";
 import Wallet from "@/components/pages/home/Wallet";
 import WeaponNft from "@/components/pages/home/WeaponNft";
 import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
+import Loader from "./loading";
 
 const Characters = dynamic(() => import("@/components/pages/home/Characters"), {
   ssr: false,
 });
 
 export default function Home() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2500);
+  }, []);
+
+  // if (loading) {
+  //   return <Loader />;
+  // }
+
   return (
     <main>
       <Banner />

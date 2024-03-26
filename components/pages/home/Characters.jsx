@@ -3,6 +3,7 @@
 import { charactersData } from "@/data";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Characters() {
   const [imageHeight, setImageHeight] = useState(null);
@@ -45,10 +46,46 @@ export default function Characters() {
       window.removeEventListener("resize", resizeCheck);
     };
   }, [imageRef && typeof window !== "undefined" && window.innerWidth]);
+
+  const textVariant = {
+    initial: {
+      opacity: 0,
+      y: 20,
+      transition: { duration: 0.75 },
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.75 },
+    },
+  };
+
+  const characterVariant = {
+    initial: {
+      opacity: 0,
+      y: 30,
+      transition: { duration: 0.75 },
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.75,
+      },
+    },
+  };
   return (
     <section className="text-white section-padding overflow-hidden bg-[url('/assets/images/banner-bg-3.webp')] bg-cover bg-center">
       <div className="main-container">
-        <div className="py-8 flex flex-col justify-center items-center">
+        <motion.div
+          className="py-8 flex flex-col justify-center items-center"
+          variants={textVariant}
+          initial="initial"
+          whileInView="animate"
+          // viewport={{
+          //   once: true,
+          // }}
+        >
           <Image
             src={"/assets/icons/text-top.svg"}
             alt=""
@@ -58,7 +95,7 @@ export default function Characters() {
           <h5 className="uppercase text-base sm:text-lg md:text-xl font-bold">
             BABYDOGE
           </h5>
-        </div>
+        </motion.div>
 
         {/* characters */}
         <div className="mt-8 sm:mt-12 md:mt-16 lg:mt-20 relative flex items-center">
@@ -71,7 +108,15 @@ export default function Characters() {
           />
 
           {/* ch - content */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 lg:gap-0 lg:flex absolute z-30 w-full py-20">
+          <div
+            className="grid grid-cols-1 sm:grid-cols-2 gap-5 lg:gap-0 lg:flex absolute z-30 w-full py-20"
+            variants={characterVariant}
+            initial="initial"
+            whileInView="animate"
+            // viewport={{
+            //   once: true,
+            // }}
+          >
             {charactersData.map((data, i) => (
               <div key={i} className="w-full flex flex-col">
                 <div

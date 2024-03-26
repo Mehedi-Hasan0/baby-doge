@@ -7,6 +7,7 @@ import Link from "next/link";
 import { lootboxData } from "@/data";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Lootbox() {
   const [imgParentHover, setImageParentHover] = useState(
@@ -25,6 +26,49 @@ export default function Lootbox() {
     setImageParentHover(newHoverState);
   };
 
+  const textVariant = {
+    initial: {
+      opacity: 0,
+      y: 20,
+      transition: { duration: 0.75 },
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.75 },
+    },
+  };
+
+  const cardVariant = {
+    initial: {
+      opacity: 0,
+      x: -30,
+      transition: { duration: 1.25 },
+    },
+    animate: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 1.25 },
+    },
+  };
+
+  const rightCardsVariant = {
+    initial: {
+      opacity: 0,
+      x: -30,
+      transition: { duration: 0.75, ease: [0.76, 0, 0.24, 1] },
+    },
+    animate: (i) => ({
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.75,
+        delay: 0.35 * i,
+        ease: [0.76, 0, 0.24, 1],
+      },
+    }),
+  };
+
   return (
     <div
       onMouseLeave={() =>
@@ -33,7 +77,15 @@ export default function Lootbox() {
       className="text-white section-padding overflow-hidden bg-[url('/assets/images/banner-bg-2.webp')] bg-cover bg-center lg:my-16"
     >
       <div className="main-container">
-        <div className="flex flex-col justify-center items-center">
+        <motion.div
+          className="flex flex-col justify-center items-center"
+          variants={textVariant}
+          initial="initial"
+          whileInView="animate"
+          // viewport={{
+          //   once: true,
+          // }}
+        >
           <h2 className=" flex items-center gap-1 sm:gap-5 text-xl sm:text-4xl xl:text-5xl 2xl:text-6xl font-medium whitespace-nowrap">
             <span className="text-yellow2">Katana Inu</span>
             <Image
@@ -45,12 +97,20 @@ export default function Lootbox() {
             />
             <span className="text-yellowRed">Baby Doge Loot Box</span>
           </h2>
-        </div>
+        </motion.div>
 
         {/* content */}
         <div className="mt-8 sm:mt-10 md:mt-12 xl:mt-14 2xl:mt-16 flex flex-col lg:flex-row gap-8 xl:gap-16 2xl:mx-32 loot-box-container">
           {/* left card */}
-          <div className="flex flex-col justify-center items-center text-white relative">
+          <motion.div
+            className="flex flex-col justify-center items-center text-white relative"
+            variants={cardVariant}
+            initial="initial"
+            whileInView="animate"
+            // viewport={{
+            //   once: true,
+            // }}
+          >
             <Image
               src={"/assets/images/card-frame.webp"}
               alt="card frame"
@@ -120,7 +180,7 @@ export default function Lootbox() {
               height={80}
               className="absolute bottom-5 xl:bottom-16"
             />
-          </div>
+          </motion.div>
 
           {/* right cards */}
           <div
@@ -135,7 +195,7 @@ export default function Lootbox() {
                 className={`grid grid-cols-1 sm:grid-cols-10 cursor-pointer`}
                 onMouseLeave={() => handleMouseLeave(i)}
               >
-                <div
+                <motion.div
                   className={` ${
                     i === 0
                       ? "sm:col-start-3 sm:col-span-8"
@@ -147,6 +207,13 @@ export default function Lootbox() {
                       ? "sm:col-start-2 sm:col-span-9"
                       : "sm:col-start-3 sm:col-span-8"
                   }`}
+                  variants={rightCardsVariant}
+                  custom={i}
+                  initial="initial"
+                  whileInView="animate"
+                  // viewport={{
+                  //   once: true,
+                  // }}
                 >
                   <div
                     onMouseEnter={() => handleMouseEnter(i)}
@@ -201,7 +268,7 @@ export default function Lootbox() {
                       </p>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </div>
             ))}
           </div>
