@@ -2,6 +2,7 @@ import Banner from "@/components/pages/home/Banner";
 // import Characters from "@/components/pages/home/Characters";
 import LootBoxDetails from "@/components/pages/home/LootBoxDetails";
 import Lootbox from "@/components/pages/home/Lootbox";
+import Media from "@/components/pages/home/Media";
 import MintingDetails from "@/components/pages/home/MintingDetails";
 import WeaponNft from "@/components/pages/home/WeaponNft";
 import dynamic from "next/dynamic";
@@ -19,6 +20,7 @@ export default function Home() {
       <LootBoxDetails />
       <MintingDetails />
       <WeaponNft />
+      <Media />
     </main>
   );
 }
