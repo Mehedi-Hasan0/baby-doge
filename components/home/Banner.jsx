@@ -86,56 +86,37 @@ export default function Banner() {
           </div>
         </motion.div>
         {/* right side content */}
-        <div className="hidden lg:block absolute w-full h-full top-0 right-0 lg:top-5 xl:top-0">
-          <motion.div
-            variants={img1Variant}
-            initial="initial"
-            whileInView="animate"
-            viewport={{
-              once: true,
-            }}
-          >
-            <Image
-              src={"/assets/images/ch-1.webp"}
-              alt=""
-              width={1920}
-              height={320}
-              className="object-cover absolute top-0 lg:right-0 w-full z-[2]"
-            />
-          </motion.div>
-          <motion.div
-            variants={img2Variant}
-            initial="initial"
-            whileInView="animate"
-            viewport={{
-              once: true,
-            }}
-          >
-            <Image
-              src={"/assets/images/ch-2.webp"}
-              alt=""
-              width={1920}
-              height={320}
-              className="object-cover absolute top-0 right-0 w-full"
-            />
-          </motion.div>
-          <motion.div
-            variants={img3Variant}
-            initial="initial"
-            whileInView="animate"
-            viewport={{
-              once: true,
-            }}
-          >
-            <Image
-              src={"/assets/images/ch-3.webp"}
-              alt=""
-              width={1920}
-              height={320}
-              className="object-cover absolute top-0 right-0 w-full z-[1]"
-            />
-          </motion.div>
-        </div>
+        <motion.div
+          className="hidden lg:block absolute w-full h-full top-0 right-0 lg:top-5 xl:top-0"
+          variants={img1Variant}
+          initial="initial"
+          whileInView="animate"
+          viewport={{
+            once: true,
+          }}
+        >
+          <Image
+            src={"/assets/images/ch-1.webp"}
+            alt=""
+            width={1920}
+            height={320}
+            className="object-cover absolute top-0 lg:right-0 w-full z-[2]"
+          />
+          <Image
+            src={"/assets/images/ch-2.webp"}
+            alt=""
+            width={1920}
+            height={320}
+            className="object-cover absolute top-0 right-0 w-full"
+          />
+          <Image
+            src={"/assets/images/ch-3.webp"}
+            alt=""
+            width={1920}
+            height={320}
+            className="object-cover absolute top-0 right-0 w-full z-[1]"
+          />
+        </motion.div>
       </section>
     </div>
   );

@@ -9,7 +9,7 @@ import { Cross as Hamburger } from "hamburger-react";
 import { useClickAway } from "react-use";
 import { AnimatePresence, motion } from "framer-motion";
 
-export default function Navbar() {
+export default function Navbars() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const buttonRefs = buttonData.map(() => useRef(null));
   const ref = useRef(null);
@@ -82,6 +82,7 @@ export default function Navbar() {
                 alt="logo"
                 width={60}
                 height={60}
+                priority={true}
               />
             </Link>
           </div>

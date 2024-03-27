@@ -1,19 +1,21 @@
 "use client";
 
-import Banner from "@/components/pages/home/Banner";
-import Ecosystem from "@/components/pages/home/Ecosystem";
+import Banner from "@/components/home/Banner";
+import Ecosystem from "@/components/home/Ecosystem";
 // import Characters from "@/components/pages/home/Characters";
-import LootBoxDetails from "@/components/pages/home/LootBoxDetails";
-import Lootbox from "@/components/pages/home/Lootbox";
-import Media from "@/components/pages/home/Media";
-import MintingDetails from "@/components/pages/home/MintingDetails";
-import Wallet from "@/components/pages/home/Wallet";
-import WeaponNft from "@/components/pages/home/WeaponNft";
+import LootBoxDetails from "@/components/home/LootBoxDetails";
+import Lootbox from "@/components/home/Lootbox";
+import Media from "@/components/home/Media";
+import MintingDetails from "@/components/home/MintingDetails";
+import Wallet from "@/components/home/Wallet";
+import WeaponNft from "@/components/home/WeaponNft";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import Loader from "./loading";
+import Footer from "@/components/shared/Footer";
+import Navbars from "@/components/shared/Navbars";
 
-const Characters = dynamic(() => import("@/components/pages/home/Characters"), {
+const Characters = dynamic(() => import("@/components/home/Characters"), {
   ssr: false,
 });
 
@@ -23,24 +25,28 @@ export default function Home() {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 2500);
+    }, 2000);
   }, []);
 
-  // if (loading) {
-  //   return <Loader />;
-  // }
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
-    <main>
-      <Banner />
-      <Lootbox />
-      <Characters />
-      <LootBoxDetails />
-      <MintingDetails />
-      <WeaponNft />
-      <Media />
-      <Ecosystem />
-      <Wallet />
-    </main>
+    <>
+      <Navbars />
+      <main>
+        <Banner />
+        <Lootbox />
+        <Characters />
+        <LootBoxDetails />
+        <MintingDetails />
+        <WeaponNft />
+        <Media />
+        <Ecosystem />
+        <Wallet />
+      </main>
+      <Footer />
+    </>
   );
 }

@@ -24,7 +24,7 @@ export default function WeaponNft() {
     } else {
       setActiveSlide(swiper.realIndex + 1); // Update active slide index when slide changes
     }
-    console.log(swiper.realIndex, "index");
+    // console.log(swiper.realIndex, "index");
   };
 
   useEffect(() => {
