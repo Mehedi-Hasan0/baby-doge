@@ -73,11 +73,6 @@ p {
   .banner-heading {
     font-size: 138px;
   }
-
-  .loot-box-container {
-    margin-inline: 176px;
-  }
-
   .loot-box-container {
     gap: 80px;
   }
@@ -86,7 +81,6 @@ p {
     width: 700px;
     height: 750px;
   }
-
   .sec-7-container {
     height: 900px;
   }
@@ -251,6 +245,6 @@ p {
     @apply px-6 sm:px-10 md:px-12 lg:px-16 container;
   }
   .section-padding {
-    @apply py-16 sm:py-28 lg:py-10;
+    @apply py-16 sm:py-20 lg:py-10;
   }
 }
