@@ -1,6 +1,7 @@
 import Image from "next/image";
 import BannerButton from "./BannerButton";
 import { motion } from "framer-motion";
+import ShortBorder from "../shared/SortBorder";
 
 export default function Banner() {
   const textVariant = {
@@ -71,7 +72,7 @@ export default function Banner() {
               </p>
             </div>
             {/* btn */}
-            <div className="mt-5 md:mt-6 2xl:mt-12 ">
+            <div className="mt-5 md:mt-6 2xl:mt-12 flex flex-col justify-center items-center">
               <BannerButton />
             </div>
           </div>

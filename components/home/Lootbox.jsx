@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import CustomButtonVariant1 from "../ui/CustomButtonVariant1";
 import { Modal, ModalContent, ModalTrigger } from "../ui/modal";
+import ShortBorder from "../shared/SortBorder";
 
 export default function Lootbox() {
   const [imgParentHover, setImageParentHover] = useState(
@@ -330,6 +331,9 @@ export default function Lootbox() {
         height={315}
         className="absolute w-1/2 xl:w-[57%] 2xl:w-1/2 min-h-[240px] xl:min-h-[320px] bottom-0 left-0 lg:object-cover 2xl:object-contain z-[1] hidden lg:block"
       />
+
+      {/* border top */}
+      <div className="absolute w-[10%] h-[3px] bg-yellow2 top-8 lg:top-0 left-0" />
     </div>
   );
 }
