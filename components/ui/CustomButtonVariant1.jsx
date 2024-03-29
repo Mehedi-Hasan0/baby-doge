@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
 import { Button } from "./button";
 import Link from "next/link";
@@ -10,6 +12,15 @@ export default function CustomButtonVariant1({
   hoverTextColor,
   elementColor,
   hoverElementColor,
+  showFullLines,
+  innerBtnPadding,
+  textColor = "#000",
+  textSize = "text-sm",
+  btnWidth = "155px",
+  btnHeight = "42px",
+  lineWidth = "148px",
+  lineHeight = "42px",
+  subLineHeight = "19px",
 }) {
   const buttonVariantRef = useRef(null);
   const [butttonHeight, setButttonHeight] = useState(null);
@@ -22,7 +33,6 @@ export default function CustomButtonVariant1({
 
     function resizeCheck() {
       setButttonHeight(buttonVariantRef.current.clientHeight);
-      console.log(buttonVariantRef.current.clientHeight);
     }
 
     window.addEventListener("resize", resizeCheck);
@@ -35,11 +45,43 @@ export default function CustomButtonVariant1({
     <div className="relative p-1 min-h-[42px] min-w-[155px] flex justify-center items-center">
       {/* left lines/border */}
       <div className=" absolute left-0 top-0 h-full min-h-[42px] w-full flex flex-col">
-        <div className="w-[1.5px] h-full bg-[#f1f1f1]" />
-        <div className="w-[1.5px] min-h-[5px] bg-transparent" />
-        <div className="w-[1.5px] h-full bg-[#f1f1f1]" />
+        <div className="w-[1px] h-full bg-[#f1f1f1]" />
+        <div className="w-[1px] min-h-[5px] bg-transparent" />
+        <div className="w-[1px] h-full bg-[#f1f1f1]" />
       </div>
-      {/* left lines/border */}
+      {showFullLines && (
+        <>
+          {/* top line */}
+          <div
+            className="h-[1px] absolute top-0 bg-[#f1f1f1]"
+            style={{
+              width: "calc(100% - 8px)",
+            }}
+          />
+          {/* bottom line */}
+          <div
+            className="h-[1.5px] absolute bottom-0 bg-[#a1a1a1]"
+            style={{
+              width: "calc(100% - 8px)",
+            }}
+          />
+          {/* right lines/border */}
+          <div
+            className="w-[1.5px] absolute top-0 right-0 flex flex-col justify-between"
+            style={{ height: `${butttonHeight + 6}px` }}
+          >
+            <div
+              className="w-[1.5px]  bg-[#f1f1f1]"
+              style={{ height: `${butttonHeight / 2 - 2}px` }}
+            />
+            <div className="w-[1.5px] min-h-[4px] bg-transparent" />
+            <div
+              className="w-[1.5px] bg-[#f1f1f1]"
+              style={{ height: `${butttonHeight / 2 - 2}px` }}
+            />
+          </div>
+        </>
+      )}
       {/* original button inner style element content*/}
       <div className=" relative w-full h-full">
         {/* left top qube */}
@@ -66,7 +108,7 @@ export default function CustomButtonVariant1({
         <Link
           ref={buttonVariantRef}
           href={"#"}
-          className="w-full min-h-[33px] flex justify-center items-center"
+          className="w-full flex justify-center items-center"
         >
           <Button
             variant="customAnimated"
@@ -74,7 +116,7 @@ export default function CustomButtonVariant1({
               "--gradClr": `${bgVariantType}`,
               "--hoverClr": `${hoverTextColor}`,
             }}
-            className={`w-full min-h-[34px] uppercase font-extrabold text-black text-sm rounded-none bg-[${bgColor}]`}
+            className={`w-full h-5 uppercase font-extrabold rounded-none bg-[${bgColor}] ${textSize} ${innerBtnPadding} text-[${textColor}]`}
           >
             {textLabel}
           </Button>

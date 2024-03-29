@@ -60,8 +60,8 @@ export default function Navbars() {
     <>
       <nav
         ref={ref}
-        className={`top-0 left-0 w-full z-50 ${
-          showScrollNav ? "fixed animate-fade-in bg-black" : "absolute"
+        className={`top-0 left-0 w-full z-50 bg-black ${
+          showScrollNav ? "fixed animate-fade-in" : "absolute"
         }`}
       >
         <div className="main-container py-4 2xl:py-5 ">
@@ -114,7 +114,7 @@ export default function Navbars() {
                 textLabel={"kainu"}
                 bgColor={"#FFD026"}
                 bgVariantType={"#232323"}
-                hoverTextColor={"#fff"}
+                hoverTextColor={"#ffffff"}
                 elementColor={"#ffffff"}
                 hoverElementColor={"#FFD026"}
               />
