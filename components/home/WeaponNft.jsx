@@ -51,11 +51,11 @@ export default function WeaponNft() {
   }
 
   return (
-    <section className="text-white section-padding overflow-hidden min-h-[1000px]">
+    <section className="text-white overflow-hidden sm:pt-12 lg:pt-0 relative">
       <div className="main-container">
         <div className="py-8 flex flex-col justify-center items-center">
           <Image
-            src={"/assets/icons/text-top.svg"}
+            src={"/assets/icons/text-top-yellow.svg"}
             alt=""
             width={310}
             height={14}
@@ -89,8 +89,8 @@ export default function WeaponNft() {
                 key={i}
                 className={`${
                   activeSlide === i
-                    ? "  min-h-[100px] py-40"
-                    : " min-h-[100px] "
+                    ? " max-h-[800px] 2xl:max-w-[1000px]"
+                    : " max-h-[800px] 2xl:max-w-[1000px]"
                 } relative`}
               >
                 <div className="flex justify-center items-center">
@@ -102,7 +102,7 @@ export default function WeaponNft() {
                     height={744}
                     className={`${
                       activeSlide === i ? "block absolute" : "hidden"
-                    }`}
+                    } max-h-[600px] object-contain`}
                   />
 
                   {/* sword */}
@@ -115,7 +115,7 @@ export default function WeaponNft() {
                       activeSlide === i
                         ? " opacity-100 lg:opacity-100"
                         : "opacity-100 lg:opacity-40"
-                    } pt-10  min-h-[500px] 2xl:min-h-[600px] relative z-10`}
+                    } pt-10  min-h-[500px] md:max-w-[300px] 2xl:max-h-[800px] relative z-10 bottom-10 md:bottom-0`}
                   />
                 </div>
               </SwiperSlide>
@@ -123,6 +123,9 @@ export default function WeaponNft() {
           </Swiper>
         </div>
       </div>
+
+      {/* border top */}
+      <div className="absolute w-[10%] h-[3px] top-0 left-0 bg-yellow2" />
     </section>
   );
 }

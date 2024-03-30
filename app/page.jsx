@@ -42,8 +42,8 @@ export default function Home() {
         <Characters />
         <LootBoxDetails />
         <BabydogeCards />
-        <MintingDetails />
         <WeaponNft />
+        <MintingDetails />
         <Media />
         <Ecosystem />
         <Wallet />

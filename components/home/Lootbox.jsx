@@ -69,7 +69,7 @@ export default function Lootbox() {
       x: 0,
       transition: {
         duration: 0.75,
-        delay: 0.35 * i,
+        delay: 0.15 * i,
         ease: [0.76, 0, 0.24, 1],
       },
     }),
