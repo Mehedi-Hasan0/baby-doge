@@ -4,6 +4,7 @@ import { charactersData } from "@/data";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import FullWidthBorder from "../shared/FullWidthBorder";
 
 export default function Characters() {
   const [imageHeight, setImageHeight] = useState(null);
@@ -74,9 +75,35 @@ export default function Characters() {
       },
     },
   };
+
+  const rightCardsVariant = {
+    initial: {
+      opacity: 0,
+      y: 30,
+      transition: { duration: 0.75, ease: [0.76, 0, 0.24, 1] },
+    },
+    animate: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.75,
+        delay: 0.25 * i,
+        ease: [0.76, 0, 0.24, 1],
+      },
+    }),
+  };
+
   return (
-    <section className="text-white section-padding overflow-hidden bg-[url('/assets/images/banner-bg-3.webp')] bg-cover bg-center">
-      <div className="main-container">
+    <section className="text-white overflow-hidden bg-[url('/assets/images/banner-bg-3.webp')]  lg:bg-[url('/assets/images/3rd-sec-banner.webp')] bg-cover bg-center lg:pt-10 relative">
+      {/* left side lines */}
+      <div className="bg-[url('/assets/icons/leftLines.svg')] bg-cover absolute top-0 left-0 min-w-[778px] min-h-[900px] lg:min-h-[600px] xl:min-h-[700px] 2xl:min-h-[1000px] z-[2] opacity-10" />
+      {/* right side lines */}
+      <div className="bg-[url('/assets/icons/rightLines.svg')] bg-cover absolute top-0 right-0 min-w-[778px] min-h-[900px] lg:min-h-[600px] xl:min-h-[700px] 2xl:min-h-[1000px] z-[2] opacity-10" />
+
+      <div className="w-[50%] h-full absolute top-0 right-0 z-[1] bg-[url('/assets/images/3rd-sec-top-right-layer.webp')] object-contain" />
+
+      {/* main content */}
+      <div className="main-container relative z-10 pb-8 lg:pb-10">
         <motion.div
           className="py-8 flex flex-col justify-center items-center"
           variants={textVariant}
@@ -87,7 +114,7 @@ export default function Characters() {
           // }}
         >
           <Image
-            src={"/assets/icons/text-top.svg"}
+            src={"/assets/icons/text-top-yellow.svg"}
             alt=""
             width={310}
             height={14}
@@ -98,18 +125,10 @@ export default function Characters() {
         </motion.div>
 
         {/* characters */}
-        <div className="mt-8 sm:mt-12 md:mt-16 lg:mt-20 relative flex items-center">
-          <Image
-            src={"/assets/images/character-bg.png"}
-            alt="background frame"
-            width={1525}
-            height={777}
-            className={`absoulute top-0 left-0 w-full z-[1] min-h-[2500px] sm:min-h-[1300px] md:min-h-[1400px] lg:min-h-[577px]`}
-          />
-
+        <div className="md:mt-4 2xl:mt-7 relative flex items-center w-full h-full">
           {/* ch - content */}
           <div
-            className="grid grid-cols-1 sm:grid-cols-2 gap-5 lg:gap-0 lg:flex absolute z-30 w-full py-20"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-5 lg:gap-0 lg:flex z-30 w-full"
             variants={characterVariant}
             initial="initial"
             whileInView="animate"
@@ -118,7 +137,17 @@ export default function Characters() {
             // }}
           >
             {charactersData.map((data, i) => (
-              <div key={i} className="w-full flex flex-col">
+              <motion.div
+                key={i}
+                className="w-full flex flex-col"
+                variants={rightCardsVariant}
+                initial="initial"
+                whileInView="animate"
+                custom={i}
+                viewport={{
+                  once: true,
+                }}
+              >
                 <div
                   className={`relative w-full flex items-center justify-center`}
                   style={{ minHeight: `${imageHeight}px` }}
@@ -128,7 +157,7 @@ export default function Characters() {
                     alt="baby doge characters"
                     width={i === 0 ? 278 : i === 1 ? 238 : i === 2 ? 731 : 377}
                     height={i === 0 ? 572 : i === 1 ? 662 : i === 2 ? 775 : 658}
-                    className={` absolute top-0 left-0 w-full aspect-square object-contain ${
+                    className={`w-full aspect-square object-contain min-h-[238px] ${
                       i === 0
                         ? "w-[478px]"
                         : i === 1
@@ -197,6 +226,11 @@ export default function Characters() {
                     </div>
                     {/* // title // */}
                     <div
+                      onMouseEnter={() =>
+                        setDetailBoxHover(
+                          Array(charactersData.length).fill(false)
+                        )
+                      }
                       className={`absolute -top-4 bg-[#f0f0f0] border border-white z-10`}
                       style={{ left: `${Math.floor(detailBox / 4.5)}px` }}
                     >
@@ -206,10 +240,15 @@ export default function Characters() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
+      </div>
+
+      {/* border top */}
+      <div className="absolute top-0 left-0 w-full">
+        <FullWidthBorder />
       </div>
     </section>
   );

@@ -6,13 +6,19 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { lootboxData } from "@/data";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import CustomButtonVariant1 from "../ui/CustomButtonVariant1";
+import { Modal, ModalContent, ModalTrigger } from "../ui/modal";
+import ShortBorder from "../shared/SortBorder";
 
 export default function Lootbox() {
   const [imgParentHover, setImageParentHover] = useState(
     Array(lootboxData.length).fill(false)
   );
+  const mainContentRef = useRef(null);
+  const [mainContentWidth, setMainContentWidth] = useState(null);
+  const [mainContentHeight, setMainContentHeight] = useState(null);
 
   const handleMouseEnter = (index) => {
     const newHoverState = [...imgParentHover];
@@ -63,217 +69,285 @@ export default function Lootbox() {
       x: 0,
       transition: {
         duration: 0.75,
-        delay: 0.35 * i,
+        delay: 0.15 * i,
         ease: [0.76, 0, 0.24, 1],
       },
     }),
   };
+
+  useEffect(() => {
+    if (mainContentRef.current) {
+      setMainContentWidth(mainContentRef.current.clientWidth);
+      setMainContentHeight(mainContentRef.current.clientHeight);
+    }
+
+    function handleResize() {
+      setMainContentWidth(mainContentRef.current.clientWidth);
+      setMainContentHeight(mainContentRef.current.clientHeight);
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <div
       onMouseLeave={() =>
         setImageParentHover(Array(lootboxData.length).fill(false))
       }
-      className="text-white section-padding overflow-hidden bg-[url('/assets/images/banner-bg-2.webp')] bg-cover bg-center lg:my-16"
+      className="text-white section-padding overflow-hidden bg-[url('/assets/images/banner-bg-2.webp')] bg-cover bg-center relative"
     >
-      <div className="main-container">
-        <motion.div
-          className="flex flex-col justify-center items-center"
-          variants={textVariant}
-          initial="initial"
-          whileInView="animate"
-          // viewport={{
-          //   once: true,
-          // }}
-        >
-          <h2 className=" flex items-center gap-1 sm:gap-5 text-xl sm:text-4xl xl:text-5xl 2xl:text-6xl font-medium whitespace-nowrap">
-            <span className="text-yellow2">Katana Inu</span>
-            <Image
-              src={"/assets/icons/x-shape.svg"}
-              alt=""
-              width={42}
-              height={46}
-              className="w-7 sm:w-11"
-            />
-            <span className="text-yellowRed">Baby Doge Loot Box</span>
-          </h2>
-        </motion.div>
+      {/* left side lines */}
+      <div className="bg-[url('/assets/icons/leftLines.svg')] bg-cover absolute top-0 left-0 min-w-[778px] min-h-[900px] lg:min-h-[600px] xl:min-h-[700px] 2xl:min-h-[1000px] z-[2] opacity-10" />
+      {/* right side lines */}
+      <div className="bg-[url('/assets/icons/rightLines.svg')] bg-cover absolute top-0 right-0 min-w-[778px] min-h-[900px] lg:min-h-[600px] xl:min-h-[700px] 2xl:min-h-[1000px] z-[2] opacity-10" />
+      {/* left side dots */}
+      <div className="absolute bottom-8 sm:bottom-0 left-6 sm:left-10 md:left-12 lg:left-16 bg-[url('/assets/icons/bottomLeftDots.svg')] bg-cover z-[4] w-[130px] h-[35px] opacity-30" />
+      {/* right side dots */}
+      <div className="absolute top-32 right-6 sm:right-10 md:right-12 lg:right-16 bg-[url('/assets/icons/rightTopDots.svg')] bg-cover z-[4] w-[60px] h-[96px] opacity-30" />
 
+      {/* bottom gradient overlay */}
+      <div
+        className="h-[20%] absolute z-[3] bg-gradient-to-b from-transparent to-black bottom-0"
+        style={{
+          width: `${mainContentWidth}px`,
+        }}
+      />
+      {/* full width gradient overlay */}
+      <div
+        className="bg-gradient-to-b from-black/40 2xl:from-black/50 2xl:to-black to-black z-[1] absolute"
+        style={{
+          width: `${mainContentWidth}px`,
+          height: `${mainContentHeight}px`,
+        }}
+      />
+      {/* right frame overlay */}
+      <div
+        className="bg-[url('/assets/images/lootCard-frame.png')] w-[50%] absolute z-[2] right-0 top-10 bg-no-repeat hidden lg:block"
+        style={{
+          height: `${mainContentHeight}px`,
+        }}
+      />
+
+      {/* main content */}
+      <div ref={mainContentRef} className="relative z-10">
         {/* content */}
-        <div className="mt-8 sm:mt-10 md:mt-12 xl:mt-14 2xl:mt-16 flex flex-col lg:flex-row gap-8 xl:gap-16 2xl:mx-32 loot-box-container">
-          {/* left card */}
-          <motion.div
-            className="flex flex-col justify-center items-center text-white relative"
-            variants={cardVariant}
-            initial="initial"
-            whileInView="animate"
-            // viewport={{
-            //   once: true,
-            // }}
-          >
-            <Image
-              src={"/assets/images/card-frame.webp"}
-              alt="card frame"
-              width={826}
-              height={703}
-              className="relative w-full xl:w-[526px] 2xl:w-[600px] z-10 lg:w-[454px] card-frame h-[670px] lg:h-auto"
-            />
-            {/* card content */}
-            <div className="px-8 py-12 sm:p-12 lg:p-14 xl:p-16 absolute z-30 top-0 left-0 w-full flex flex-col gap-7 2xl:gap-12">
-              <h4 className="font-bold text-3xl">
-                Get your <span className="text-yellow2">whitelist</span> spot
-                now!
-              </h4>
-              <div className="bg-[#434343]/40 border border-[#ffffff]/50 text-sm md:text-base lg:text-lg rounded-[6px] px-6 py-3">
-                <span className="text-yellow2 font-semibold">Supply:</span>{" "}
-                10,000 Loot Boxes
-              </div>
-              <p className="text-sm md:text-base lg:text-lg max-w-[324px] pl-7">
-                Each Loot Box includes a Baby DogeCharacter and a Weapon NFT
-              </p>
-              <div className="bg-[#434343]/40 border border-[#ffffff]/50 text-sm md:text-base lg:text-lg rounded-[6px] px-6 py-3">
-                <span className="text-yellow2 font-semibold">Price:</span> $15
-                for whitelisted Wallets
-              </div>
-              <p className="text-sm md:text-base lg:text-lg max-w-[324px] pl-7">
-                $20 for non-whitelisted Wallets
-              </p>
-              <div className="flex items-center gap-4 w-full">
-                <div className="bg-[#434343]/40 border border-[#ffffff]/50 text-sm md:text-base lg:text-lg rounded-[6px] px-6 py-3 flex-1">
-                  <span className="text-yellow2 font-semibold uppercase">
-                    chain:
-                  </span>{" "}
-                  BNB
-                </div>
-                <div className="bg-[#434343]/40 border border-[#ffffff]/50 text-sm md:text-base lg:text-lg rounded-[6px] px-6 py-3 flex-1">
-                  <span className="text-yellow2 font-semibold capitalize">
-                    Mint date:
-                  </span>{" "}
-                  TBA
-                </div>
-              </div>
-            </div>
-
-            {/* footer btn */}
-            <div className="absolute bottom-8 xl:bottom-20">
-              <Button className="bg-gradient-to-b from-[#FFEE55] to-[#FF9900] rounded-none overflow-hidden banner-btn min-w-[209px] min-h-[40px] flex justify-center items-center font-semibold relative transition-all duration-500 ease-in-out opacity-90 hover:opacity-100 cursor-pointer z-20">
-                <Link
-                  href="#"
-                  className="w-full h-full uppercase text-yellowDarkRed leading-[1.9] relative z-20"
-                >
-                  whitelist now
-                </Link>
+        <div className="sm:mt-10 md:mt-12 xl:mt-14 2xl:mt-16 flex flex-col lg:flex-row gap-8 xl:gap-16 loot-box-container">
+          <div className="flex flex-col gap-2 lg:w-[48%] px-6 sm:px-10 md:px-12 lg:pl-16 lg:px-0">
+            <motion.div
+              className="flex flex-col justify-center items-center"
+              variants={textVariant}
+              initial="initial"
+              whileInView="animate"
+              // viewport={{
+              //   once: true,
+              // }}
+            >
+              <h2 className=" flex items-center gap-1 sm:gap-5 text-2xl sm:text-3xl lg:text-[28px] xl:text-4xl 2xl:text-5xl font-khand my-8">
+                <span className="text-white">Katana Inu</span>
                 <Image
-                  src={"/assets/icons/btn-shape.svg"}
-                  width={209}
-                  height={40}
-                  alt="shape"
-                  className="absolute bottom-0 z-10"
+                  src={"/assets/icons/x-shape.svg"}
+                  alt=""
+                  width={42}
+                  height={46}
+                  className="w-7 sm:w-11"
                 />
-              </Button>
-            </div>
-            {/* glow */}
-            <Image
-              src={"/assets/icons/glow.svg"}
-              alt=""
-              width={1509}
-              height={80}
-              className="absolute bottom-5 xl:bottom-16"
-            />
-          </motion.div>
+                <span className="text-yellow2">BabyDoge</span> Loot Box
+              </h2>
+            </motion.div>
+            {/* left card */}
+            <motion.div
+              className="flex flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-14 xl:gap-16 justify-center items-center text-white relative"
+              variants={cardVariant}
+              initial="initial"
+              whileInView="animate"
+              // viewport={{
+              //   once: true,
+              // }}
+            >
+              {/* video player */}
+              <Modal>
+                <ModalTrigger asChild>
+                  <div className="group relative flex justify-center items-center cursor-pointer">
+                    <Image
+                      src={"/assets/images/videoPlayer.webp"}
+                      alt="video player"
+                      width={642}
+                      height={365}
+                    />
+                    {/* // icon */}
+                    <div className="absolute z-[2] w-[72px] h-[72px] border-[1.5px] rounded-full border-transparent group-hover:border-white/40 transition duration-300 ease-in">
+                      <Image
+                        src={"/assets/icons/videoPlayerIcon.svg"}
+                        alt="player icon"
+                        width={76}
+                        height={76}
+                      />
+                    </div>
+                  </div>
+                </ModalTrigger>
+                <ModalContent>{"7nykO0FzsVQ"}</ModalContent>
+              </Modal>
+
+              {/* white list btn */}
+              {whiteListBtn.map((btn, i) => (
+                <CustomButtonVariant1
+                  key={btn.bgColor}
+                  textLabel={btn.textLabel}
+                  bgColor={btn.bgColor}
+                  textSize={btn.textSize}
+                  innerBtnPadding={btn.innerBtnPadding}
+                  bgVariantType={btn.bgVariantType}
+                  hoverTextColor={btn.hoverTextColor}
+                  elementColor={btn.elementColor}
+                  hoverElementColor={btn.hoverElementColor}
+                  showFullLines={btn.showFullLines}
+                />
+              ))}
+
+              {/* left card character for mobile */}
+              <div className="relative">
+                <Image
+                  src={"/assets/images/lootBox-ch.png"}
+                  alt="babydoge character"
+                  width={995}
+                  height={315}
+                  className="w-[400px] sm:w-full min-h-[250px] object-cover sm:object-contain z-[1] block lg:hidden"
+                />
+                {/* bg overlay */}
+                <div className="w-full h-1/2 absolute bottom-0 z-[2] bg-gradient-to-b from-transparent to-black" />
+              </div>
+            </motion.div>
+          </div>
 
           {/* right cards */}
           <div
             onMouseLeave={() =>
               setImageParentHover(Array(lootboxData.length).fill(false))
             }
-            className="flex flex-col justify-between gap-5 flex-1 relative z-20 w-full lg:max-w-[715px]"
+            className="flex-1 relative z-20 lg:max-w-[715px] lg:w-[50%] py-8 lg:py-0  px-6 sm:px-10 md:px-12 lg:pr-16 lg:px-0"
           >
-            {lootboxData.map((data, i) => (
-              <div
-                key={i}
-                className={`grid grid-cols-1 sm:grid-cols-10 cursor-pointer`}
-                onMouseLeave={() => handleMouseLeave(i)}
-              >
-                <motion.div
-                  className={` ${
-                    i === 0
-                      ? "sm:col-start-3 sm:col-span-8"
-                      : i === 1
-                      ? "sm:col-start-2 sm:col-span-9"
-                      : i === 2
-                      ? "sm:col-start-1 sm:col-span-10"
-                      : i === 3
-                      ? "sm:col-start-2 sm:col-span-9"
-                      : "sm:col-start-3 sm:col-span-8"
-                  }`}
-                  variants={rightCardsVariant}
-                  custom={i}
-                  initial="initial"
-                  whileInView="animate"
-                  // viewport={{
-                  //   once: true,
-                  // }}
+            <div className="flex flex-col justify-between gap-5 ">
+              <h4 className="font-jost font-semibold italic text-xl sm:text-sxl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-[55px] uppercase text-yellow2 my-2 lg:my-8 text-center relative z-10">
+                utilities
+              </h4>
+              {lootboxData.map((data, i) => (
+                <div
+                  key={i}
+                  className={`grid grid-cols-1 sm:grid-cols-10 cursor-pointer relative z-10`}
+                  onMouseLeave={() => handleMouseLeave(i)}
                 >
-                  <div
-                    onMouseEnter={() => handleMouseEnter(i)}
-                    onMouseLeave={() => handleMouseLeave(i)}
-                    className={`flex items-center gap-1 xl:gap-3`}
+                  <motion.div
+                    className={` ${
+                      i === 0
+                        ? "sm:col-start-3 sm:col-span-8"
+                        : i === 1
+                        ? "sm:col-start-2 sm:col-span-9"
+                        : i === 2
+                        ? "sm:col-start-1 sm:col-span-10"
+                        : i === 3
+                        ? "sm:col-start-2 sm:col-span-9"
+                        : "sm:col-start-3 sm:col-span-8"
+                    }`}
+                    variants={rightCardsVariant}
+                    custom={i}
+                    initial="initial"
+                    whileInView="animate"
+                    // viewport={{
+                    //   once: true,
+                    // }}
                   >
-                    {/* polygon shap */}
-                    <div className="outer-polygon w-[100px] sm:w-[120px] lg:w-[104px] xl:w-[137px] aspect-square bg-[#A6A6A6]/10 p-3 flex justify-center items-center relative">
-                      <div className="outer-polygon bg-[#D9D9D9]/5 w-[70px] sm:w-[100px] lg:w-[70px] xl:w-[104px] aspect-square">
-                        <div
-                          className={`w-full h-full bg-[#D9D9D9]/5 flex justify-center items-center cursor-pointer transition-all duration-700 ease-in-out ${
-                            imgParentHover[i] ? "grayscale-0" : "grayscale"
-                          }`}
-                        >
-                          <Image
-                            src={data.iconPath}
-                            alt={`loot box icon ${i + 1}`}
-                            width={47}
-                            height={50}
-                            className="w-9 xl:w-12 relative z-20"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    {/* right content */}
-
                     <div
                       onMouseEnter={() => handleMouseEnter(i)}
-                      className="flex flex-col gap-2 w-fit"
+                      onMouseLeave={() => handleMouseLeave(i)}
+                      className={`flex items-center gap-1 xl:gap-3`}
                     >
+                      {/* polygon shap */}
+                      <div className="outer-polygon w-[100px] sm:w-[120px] lg:w-[104px] xl:w-[137px] aspect-square bg-[#A6A6A6]/10 p-3 flex justify-center items-center relative">
+                        <div className="outer-polygon bg-[#D9D9D9]/5 w-[70px] sm:w-[100px] lg:w-[70px] xl:w-[104px] aspect-square">
+                          <div
+                            className={`w-full h-full bg-[#D9D9D9]/5 flex justify-center items-center cursor-pointer transition-all duration-700 ease-in-out ${
+                              imgParentHover[i] ? "grayscale-0" : "grayscale"
+                            }`}
+                          >
+                            <Image
+                              src={data.iconPath}
+                              alt={`loot box icon ${i + 1}`}
+                              width={47}
+                              height={50}
+                              className="w-9 xl:w-12 relative z-20"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      {/* right content */}
+
                       <div
-                        className={` ${
-                          imgParentHover[i]
-                            ? "bg-[url('/assets/icons/lootbox/loot-text-bg-grad.png')]"
-                            : " bg-[url('/assets/icons/lootbox/loot-text-bg.png')]"
-                        } transition-all duration-700 ease-in-out bg-cover mr-1 max-w-[318px]`}
+                        onMouseEnter={() => handleMouseEnter(i)}
+                        className="flex flex-col gap-2 w-fit"
                       >
+                        <div
+                          className={` ${
+                            imgParentHover[i]
+                              ? "bg-[url('/assets/icons/lootbox/loot-text-bg-grad.png')]"
+                              : " bg-[url('/assets/icons/lootbox/loot-text-bg.png')]"
+                          } transition-all duration-700 ease-in-out bg-cover mr-1 max-w-[318px]`}
+                        >
+                          <p
+                            className={`py-2 text-black text-nowrap text-[10px] sm:text-sm ml-2 xl:ml-4 font-bold ${
+                              imgParentHover[i] ? "text-white" : "text-black "
+                            } transition-all duration-500 ease-in-out`}
+                          >
+                            {data.title}
+                          </p>
+                        </div>
                         <p
-                          className={`py-2 text-black text-nowrap text-[10px] sm:text-sm ml-2 xl:ml-4 font-bold ${
-                            imgParentHover[i] ? "text-white" : "text-black "
+                          className={`text-xs sm:text-base xl:text-lg font-medium max-w-[326px] text-white xl:ml-6 ${
+                            imgParentHover[i] ? "text-yellow2" : "text-white "
                           } transition-all duration-500 ease-in-out`}
                         >
-                          {data.title}
+                          {data.desc}
                         </p>
                       </div>
-                      <p
-                        className={`text-xs sm:text-base lg:text-lg font-medium max-w-[326px] text-white xl:ml-6 ${
-                          imgParentHover[i] ? "text-yellow2" : "text-white "
-                        } transition-all duration-500 ease-in-out`}
-                      >
-                        {data.desc}
-                      </p>
                     </div>
-                  </div>
-                </motion.div>
-              </div>
-            ))}
+                  </motion.div>
+                </div>
+              ))}
+            </div>
+
+            {/* overlay frame for small device */}
+            <div className="w-full h-full absolute top-0 left-0 z-[2] bg-[url('/assets/images/lootCard-frame.png')] block lg:hidden" />
           </div>
         </div>
       </div>
+      {/* left card character */}
+      <Image
+        src={"/assets/images/lootBox-ch.png"}
+        alt="babydoge character"
+        width={995}
+        height={315}
+        className="absolute w-1/2 xl:w-[57%] 2xl:w-1/2 min-h-[240px] xl:min-h-[320px] bottom-0 left-0 lg:object-cover 2xl:object-contain z-[1] hidden lg:block"
+      />
+
+      {/* border top */}
+      <div className="absolute w-[10%] h-[3px] bg-yellow2 top-8 lg:top-0 left-0" />
     </div>
   );
 }
+
+const whiteListBtn = [
+  {
+    textLabel: "whitelist now",
+    bgColor: "#FFD026",
+    textSize: "text-sm lg:text-base 2xl:text-xl ",
+    innerBtnPadding: "px-10 h-8",
+    bgVariantType: "#232323",
+    hoverTextColor: "#ffffff",
+    elementColor: "#ffffff",
+    hoverElementColor: "#FFD026",
+    showFullLines: true,
+  },
+];

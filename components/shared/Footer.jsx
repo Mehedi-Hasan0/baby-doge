@@ -5,14 +5,14 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="text-white">
+    <footer className="text-white overflow-hidden">
       <Newsletter />
-      <div className="px-6 sm:px-10 xl:px-12 container py-8 sm:py-10 md:py-12 xl:py-20 2xl:py-24 w-full">
-        <div className="flex flex-col md:flex-row gap-6 md:gap-10 justify-around">
+      <div className="px-6 sm:px-10 xl:px-12 container py-8 sm:py-10 md:py-12 xl:py-20 2xl:py-24 w-full relative">
+        <div className="flex flex-col lg:flex-row gap-6 md:gap-10 justify-around relative z-[3]">
           {/* 1st content */}
-          <div className="flex flex-col md:flex-row items-start gap-6 md:gap-10 max-w-[506px]">
+          <div className="flex flex-col lg:flex-row items-start gap-6 md:gap-10 max-w-[506px]">
             <Image src={footerData.logo} alt="" width={88} height={88} />
-            <div className="flex flex-col gap-4 md:gap-6">
+            <div className="flex flex-col gap-4 md:gap-6 max-w-[300px] sm:max-w-full">
               <p className="text-[#B3B3B3] text-xs sm:text-sm md:text-base">
                 {footerData.desc1}
               </p>
@@ -71,14 +71,22 @@ export default function Footer() {
             </div>
           </div>
           {/* 4th content */}
-          <Image
+          {/* <Image
             src={"/assets/images/footer-ch.png"}
             alt=""
             width={952}
             height={642}
-            className="-mt-64 object-contain hidden xl:block"
-          />
+            className="-mb-10 xl-mt-64 object-contain hidden lg:block w-[300px]"
+          /> */}
+          <div> </div>
         </div>
+        <Image
+          src={"/assets/images/footer-ch.png"}
+          alt=""
+          width={952}
+          height={642}
+          className="object-contain block absolute -top-20 -right-20 sm:-right-16 w-[400px] md:w-[500px] 2xl:w-[700px] 2xl:-right-10 z-[2]"
+        />
       </div>
     </footer>
   );

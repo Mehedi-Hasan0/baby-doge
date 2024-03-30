@@ -51,11 +51,20 @@ export default function WeaponNft() {
   }
 
   return (
-    <section className="text-white section-padding overflow-hidden min-h-[1000px]">
-      <div className="main-container">
+    <section className="text-white overflow-hidden sm:pt-12 lg:pt-0 relative">
+      {/* left side lines */}
+      <div className="bg-[url('/assets/icons/leftLines.svg')] bg-cover absolute top-0 left-0 min-w-[778px] min-h-[900px] lg:min-h-[600px] xl:min-h-[700px] 2xl:min-h-[1000px] z-[2] opacity-10" />
+      {/* right side lines */}
+      <div className="bg-[url('/assets/icons/rightLines.svg')] bg-cover absolute top-0 right-0 min-w-[778px] min-h-[900px] lg:min-h-[600px] xl:min-h-[700px] 2xl:min-h-[1000px] z-[2] opacity-10" />
+      {/* left side dots */}
+      <div className="absolute bottom-8 sm:bottom-0 left-6 sm:left-10 md:left-12 lg:left-16 bg-[url('/assets/icons/bottomLeftDots.svg')] bg-cover z-[4] w-[130px] h-[35px] opacity-30" />
+      {/* right side dots */}
+      <div className="absolute top-32 right-6 sm:right-10 md:right-12 lg:right-16 bg-[url('/assets/icons/rightTopDots.svg')] bg-cover z-[4] w-[60px] h-[96px] opacity-30" />
+
+      <div className="main-container relative z-10">
         <div className="py-8 flex flex-col justify-center items-center">
           <Image
-            src={"/assets/icons/text-top.svg"}
+            src={"/assets/icons/text-top-yellow.svg"}
             alt=""
             width={310}
             height={14}
@@ -89,8 +98,8 @@ export default function WeaponNft() {
                 key={i}
                 className={`${
                   activeSlide === i
-                    ? "  min-h-[100px] py-40"
-                    : " min-h-[100px] "
+                    ? " max-h-[800px] 2xl:max-w-[1000px]"
+                    : " max-h-[800px] 2xl:max-w-[1000px]"
                 } relative`}
               >
                 <div className="flex justify-center items-center">
@@ -102,7 +111,7 @@ export default function WeaponNft() {
                     height={744}
                     className={`${
                       activeSlide === i ? "block absolute" : "hidden"
-                    }`}
+                    } max-h-[600px] object-contain`}
                   />
 
                   {/* sword */}
@@ -115,7 +124,7 @@ export default function WeaponNft() {
                       activeSlide === i
                         ? " opacity-100 lg:opacity-100"
                         : "opacity-100 lg:opacity-40"
-                    } pt-10  min-h-[500px] 2xl:min-h-[600px] relative z-10`}
+                    } pt-10  min-h-[500px] md:max-w-[300px] 2xl:max-h-[800px] relative z-10 bottom-10 md:bottom-0`}
                   />
                 </div>
               </SwiperSlide>
@@ -123,6 +132,9 @@ export default function WeaponNft() {
           </Swiper>
         </div>
       </div>
+
+      {/* border top */}
+      <div className="absolute w-[10%] h-[3px] top-0 left-0 bg-yellow2" />
     </section>
   );
 }

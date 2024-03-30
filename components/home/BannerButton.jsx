@@ -1,77 +1,170 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import CustomButtonVariant1 from "../ui/CustomButtonVariant1";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { useRef } from "react";
-
-export const buttonData = [
-  {
-    label: "WHITELIST NOW",
-    link: "#",
-    parentBorderColor: "bg-gradient-to-b from-[#C8AA6E] to-[#7A5C29]",
-    buttonBgColor: "bg-gradient-to-b from-[#FFC7004D] to-[#FFC70000]",
-    blobColor: "#FFC7004D",
-  },
-  {
-    label: "BABYDOGE",
-    link: "#",
-    parentBorderColor: "bg-gradient-to-b from-[#C7C7C7] to-[#4B4B4B]",
-    buttonBgColor: "bg-gradient-to-b from-[#C7C7C74D] to-[#BBBBBB00]",
-    blobColor: "#C7C7C74D",
-  },
-  {
-    label: "KATANAINU",
-    link: "#",
-    parentBorderColor: "bg-gradient-to-b from-[#C7C7C7] to-[#4B4B4B]",
-    buttonBgColor: "bg-gradient-to-b from-[#C7C7C74D] to-[#BBBBBB00]",
-    blobColor: "#C7C7C74D",
-  },
-];
+import { Button } from "../ui/button";
 
 const BannerButton = () => {
-  const buttonRefs = buttonData.map(() => useRef(null));
+  const buttonVariantRef = useRef(null);
+  const [butttonHeight, setButttonHeight] = useState(null);
 
-  const handleBlobMoving = (e, btnRef) => {
-    if (btnRef.current) {
-      let x = e.pageX - btnRef.current.offsetLeft;
-      let y = e.pageY - btnRef.current.offsetTop;
-
-      btnRef.current.style.setProperty("--x", x + "px");
-      btnRef.current.style.setProperty("--y", y + "px");
+  // getting rendered navbar button height and set to a variable for positioning inner content
+  useEffect(() => {
+    if (buttonVariantRef.current) {
+      setButttonHeight(buttonVariantRef.current.clientHeight);
     }
-  };
 
+    function resizeCheck() {
+      setButttonHeight(buttonVariantRef.current.clientHeight);
+    }
+
+    window.addEventListener("resize", resizeCheck);
+
+    return () => {
+      window.removeEventListener("resize", resizeCheck);
+    };
+  }, [buttonVariantRef && typeof window !== "undefined" && window.innerWidth]);
   return (
-    <div className="grid grid-cols-6 gap-3 max-w-[320px] md:max-w-[400px] mt-5 lg:mt-0 2xl:mt-3">
-      {buttonData.map((btn, i) => (
-        <div
-          key={i}
-          className={`${btn.parentBorderColor} ${
-            i === 0
-              ? "col-start-1 col-span-6"
-              : i === 1
-              ? "col-start-1 col-end-4"
-              : "col-start-4 col-end-7"
-          }  overflow-hidden blob relative`}
-          ref={buttonRefs[i]}
-          style={{ "--clr": `${btn.blobColor}` }}
-          onMouseMove={(e) => {
-            handleBlobMoving(e, buttonRefs[i]);
-          }}
-        >
-          <Button
-            className={`${btn.buttonBgColor} ${
-              i === 0 ? "font-bold" : ""
-            }  m-[2px] rounded-none  italic  overflow-hidden banner-btn`}
-          >
-            <Link href={btn.link} className="relative z-20 w-full">
-              {btn.label}
-            </Link>
-          </Button>
-        </div>
+    <>
+      {whiteListBtn.map((btn, i) => (
+        <CustomButtonVariant1
+          key={btn.bgColor}
+          textLabel={btn.textLabel}
+          bgColor={btn.bgColor}
+          textSize={btn.textSize}
+          innerBtnPadding={btn.innerBtnPadding}
+          bgVariantType={btn.bgVariantType}
+          hoverTextColor={btn.hoverTextColor}
+          elementColor={btn.elementColor}
+          hoverElementColor={btn.hoverElementColor}
+          showFullLines={btn.showFullLines}
+        />
       ))}
-    </div>
+
+      <div className="flex flex-row items-center mt-5 md:mt-8 2xl:mt-16 gap-6">
+        {/* katana logo */}
+        {logoData.map((data, i) => (
+          <div
+            key={i}
+            className="flex flex-col items-center justify-center gap-4"
+          >
+            <Image
+              src={data.icon}
+              alt="katan Inu logo"
+              width={62}
+              height={62}
+              className="aspect-square object-contain"
+            />
+            {/* /////////////////// BTN //////////////////// */}
+            <div className="relative p-1 min-h-[42px] min-w-[155px] flex justify-center items-center">
+              {/* left lines/border */}
+              <div className=" absolute left-0 top-0 h-full min-h-[42px] w-full flex flex-col">
+                <div className="w-[1px] h-full bg-[#f1f1f1]" />
+                <div className="w-[1px] min-h-[5px] bg-transparent" />
+                <div className="w-[1px] h-full bg-[#f1f1f1]" />
+              </div>
+              {/* top line */}
+              <div
+                className="h-[1px] absolute top-0 bg-[#f1f1f1]"
+                style={{
+                  width: "calc(100% - 8px)",
+                }}
+              />
+              {/* bottom line */}
+              <div
+                className="h-[1.5px] absolute bottom-0 bg-[#a1a1a1]"
+                style={{
+                  width: "calc(100% - 8px)",
+                }}
+              />
+              {/* right lines/border */}
+              <div
+                className="w-[1.5px] absolute top-0 right-0 flex flex-col justify-between"
+                style={{ height: `${butttonHeight + 6}px` }}
+              >
+                <div
+                  className="w-[1.5px]  bg-[#f1f1f1]"
+                  style={{ height: `${butttonHeight / 2 - 2}px` }}
+                />
+                <div className="w-[1.5px] min-h-[4px] bg-transparent" />
+                <div
+                  className="w-[1.5px] bg-[#f1f1f1]"
+                  style={{ height: `${butttonHeight / 2 - 2}px` }}
+                />
+              </div>
+              {/* original button inner style element content*/}
+              <div className=" relative w-full h-full">
+                {/* left top qube */}
+                <div className="bg-black w-[6px] h-[6px] absolute top-0 left-0 z-10" />
+                {/* middle line */}
+                <div
+                  className={`absolute left-0 w-[7px] h-[3px] z-10 transition duration-300 ease-in middle-qube`}
+                  style={{
+                    top: `${butttonHeight / 2 - 1}px`,
+                    "--elemClr": "#ffffff",
+                    "--hoverElemClr": "#000000",
+                  }}
+                />
+                {/* right bottom qube */}
+                <div
+                  className={`w-[6px] h-[6px] absolute bottom-0 right-0 z-10 transition duration-300 ease-in  right-bottom-qube`}
+                  style={{
+                    "--elemClr": "#ffffff",
+                    "--hoverElemClr": "#000000",
+                  }}
+                />
+
+                {/* button content */}
+                <Link
+                  ref={buttonVariantRef}
+                  href={"#"}
+                  className="w-full flex justify-center items-center"
+                >
+                  <Button
+                    variant="customAnimated"
+                    style={{
+                      "--gradClr": "#FFD026",
+                      "--hoverClr": "#000000",
+                    }}
+                    className={`w-full h-5 uppercase font-extrabold rounded-none bg-[#1a1a1a] text-sm text-[#ffffff]`}
+                  >
+                    {data.textLabel}
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
   );
 };
 
 export default BannerButton;
+
+const logoData = [
+  {
+    icon: "/assets/images/katanaLogo.webp",
+    textLabel: "Kataninu",
+  },
+  {
+    icon: "/assets/images/baby-doge-logo.png",
+    textLabel: "babydoge",
+  },
+];
+
+const whiteListBtn = [
+  {
+    textLabel: "whitelist now",
+    bgColor: "#FFD026",
+    textSize: "text-sm lg:text-base 2xl:text-xl ",
+    innerBtnPadding: "px-10 h-8",
+    bgVariantType: "#232323",
+    hoverTextColor: "#ffffff",
+    elementColor: "#ffffff",
+    hoverElementColor: "#FFD026",
+    showFullLines: true,
+  },
+];

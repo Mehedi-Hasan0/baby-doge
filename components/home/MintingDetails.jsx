@@ -1,8 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import CustomButtonVariant1 from "../ui/CustomButtonVariant1";
+import FullWidthBorder from "../shared/FullWidthBorder";
 
 export default function MintingDetails() {
   const [miningNumber, setMiningNumber] = useState(823);
@@ -12,6 +14,10 @@ export default function MintingDetails() {
   const percentageOfMining = Math.ceil(
     (miningNumber * 100) / totalMiningNumber
   );
+
+  const mainContentRef = useRef(null);
+  const [mainContentWidth, setMainContentWidth] = useState(null);
+  const [mainContentHeight, setMainContentHeight] = useState(null);
 
   const textVariant = {
     initial: {
@@ -55,196 +61,206 @@ export default function MintingDetails() {
     }),
   };
 
+  useEffect(() => {
+    if (mainContentRef.current) {
+      setMainContentWidth(mainContentRef.current.clientWidth);
+      setMainContentHeight(mainContentRef.current.clientHeight);
+    }
+
+    function handleResize() {
+      setMainContentWidth(mainContentRef.current.clientWidth);
+      setMainContentHeight(mainContentRef.current.clientHeight);
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // 383838 / 100
+  // 434242 / 12
+
   return (
-    <section className="text-white section-padding overflow-hidden bg-none xl:bg-[url('/assets/images/banner-bg-5.webp')] bg-cover bg-center min-h-[1200px] lg:mt-20">
-      <div className="main-container relative">
-        {/* btn img */}
-        <div className="flex justify-center items-center">
-          <Image
-            src={"/assets/icons/min-button.svg"}
-            alt="minting btn"
-            width={292}
-            height={42}
-            className="relative z-20"
-          />
+    <section className="text-white overflow-hidden bg-[url('/assets/images/banner-bg-2.webp')] bg-cover bg-center mt-5 sm:mt-12 md:mt-14 lg:mt-20 relative">
+      {/* bottom gradient overlay */}
+      <div
+        className="h-[20%] absolute z-[3] bg-gradient-to-b from-transparent to-black bottom-0"
+        style={{
+          width: `${mainContentWidth}px`,
+        }}
+      />
+      {/* full width gradient overlay */}
+      <div
+        className="bg-gradient-to-b from-transparent to-black z-[1] absolute"
+        style={{
+          width: `${mainContentWidth}px`,
+          height: `${mainContentHeight}px`,
+        }}
+      />
+      <div
+        className="bg-gradient-to-b from-transparent to-black z-[1] absolute bottom-0 left-0"
+        style={{
+          width: `${mainContentWidth}px`,
+          height: `${mainContentHeight / 2}px`,
+        }}
+      />
+
+      {/* main content */}
+      <div ref={mainContentRef} className="main-container relative z-10 ">
+        {/* btn */}
+        <div className="py-12 sm:py-8 md:pt-10 flex flex-col justify-center items-center gap-7">
+          <div>
+            <Image
+              src={"/assets/icons/text-top-yellow.svg"}
+              alt=""
+              width={310}
+              height={14}
+            />
+            <h5 className="uppercase text-base sm:text-lg md:text-xl font-bold tracking-[5px] text-center">
+              Mint Here
+            </h5>
+          </div>
+          <div>
+            <p className="text-lg sm:text-xl md:text-2xl font-light text-white/80 text-center leading-5 sm:leading-normal mb-1 lg:mb-0">
+              In this lootbox, you will mint{" "}
+              <span className="text-yellow2 font-medium">1 random NFT</span> of
+              character or sword
+            </p>
+            <p className="text-xs sm:text-sm md:text-base text-white/80 text-center">
+              Check for Katana Inu Ecosystem for Renting, Staking, our
+              Marketplace or for purchasing our $Kata Token:
+            </p>
+          </div>
         </div>
         {/* content */}
-        <div className="flex flex-col lg:grid lg:grid-cols-12 2xl:grid-cols-6 relative lg:mt-20 place-content-center items-center 2xl:mx-20 gap-10">
-          {/* // mobile device show character */}
-          <motion.div
-            variants={textVariant}
-            initial="initial"
-            whileInView="animate"
-            // viewport={{
-            //   once: true,
-            // }}
-          >
+        <div className="flex flex-col justify-center items-center lg:justify-start lg:items-start lg:flex-row relative gap-10 lg:gap-0">
+          <div className="lg:w-[22%] xl:w-[25%] 2xl:w-[30%] relative bottom-20 lg:bottom-10">
             <Image
-              src={"/assets/images/mobile-mint-ch.webp"}
+              src={"/assets/images/mint-ch-1.png"}
               alt=""
-              width={1024}
-              height={700}
-              className="block lg:hidden w-[500px] relative z-[1]"
+              width={617}
+              height={899}
+              className="object-contain"
             />
-          </motion.div>
+          </div>
           {/* middle card */}
-          <div className="-mt-44 lg:-mt-0 relative lg:col-start-3 lg:col-end-9 2xl:col-start-3 2xl:col-span-3">
-            <motion.div
-              variants={imgVariant}
-              initial="initial"
-              whileInView="animate"
-              // viewport={{
-              //   once: true,
-              // }}
-            >
-              <Image
-                src={"/assets/images/card-frame.webp"}
-                alt="card frame"
-                width={593}
-                height={800}
-                className="relative z-10 w-full h-[700px] sm:h-[700px] md:h-[740px] lg:h-[820px] xl:h-[780px] 2xl:h-[880px] "
-              />
-            </motion.div>
-
+          <div className="-mt-36 lg:-mt-0 relative lg:col-start-3 lg:col-end-9 2xl:col-start-3 2xl:col-span-3 flex-1 w-full sm:w-[90%] md:w-[80%] lg:w-[56%] xl:w-[50%] 2xl:w-[40%] bg-[url('/assets/images/min-frame.png')] bg-no-repeat bg-cover px-4 xl:px-10 2xl:px-10 min-card-bg">
             {/* card content */}
-            <motion.div
-              className="px-5 py-8 sm:p-12 lg:p-14 xl:px-8 xl:py-10 2xl:p-12 absolute z-10 top-0 left-0 w-full flex flex-col gap-3"
-              variants={textVariant}
-              initial="initial"
-              whileInView="animate"
-              // viewport={{
-              //   once: true,
-              // }}
-            >
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-light">
-                In this lootbox, you will mint{" "}
-                <span className="text-yellow2 font-medium">1 random NFT</span>{" "}
-                of character or sword
-              </p>
-              <Image
-                src={"/assets/images/lootbox-text.png"}
-                alt=""
-                width={284}
-                height={38}
-              />
-              <p className="font-light text-xs lg:text-sm text-[#D0D4EA]">
-                Check for Katana Inu Ecosystem for Renting, Staking, our
-                Marketplace or for purchasing our $Kata Token:
-              </p>
+            {/* ////////////////////////////////////////////// */}
+            {/* content */}
+            <div className="flex flex-col gap-3 md:gap-4 2xl:gap-6 justify-center items-center max-w-[418px] 2xl:max-w-[600px] mx-auto pt-7 pb-9 xl:pt-10 2xl:pt-14 mint-card">
+              {/* favourite * share * affiliate */}
+              <div className="flex items-center flex-wrap justify-center gap-2 md:gap-3 xl:gap-4 w-full lg:justify-between pb-3">
+                {/* favourite */}
+                <div className="py-2 pl-2 pr-5 bg-[#000000] rounded-full flex items-center gap-2">
+                  <div className="p-2 rounded-full bg-[#E4E4E41A]">
+                    <Image
+                      src="/assets/icons/favourite.svg"
+                      alt="favourite"
+                      width={16}
+                      height={16}
+                    />
+                  </div>
+                  <p className="text-white text-xs md:text-sm font-bold">
+                    Favourite
+                  </p>
+                </div>
+                {/* share */}
+                <div className="py-2 pl-2 pr-5 bg-[#000000] rounded-full flex items-center gap-2">
+                  <div className="p-2 rounded-full bg-[#E4E4E41A]">
+                    <Image
+                      src="/assets/icons/share.svg"
+                      alt="favourite"
+                      width={16}
+                      height={16}
+                    />
+                  </div>
+                  <p className="text-white text-xs md:text-sm font-bold">
+                    Share
+                  </p>
+                </div>
+                {/* affiliate */}
+                <div className="py-2 pl-2 pr-5 bg-[#000000] rounded-full flex items-center gap-2">
+                  <div className="p-2 rounded-full bg-[#E4E4E41A]">
+                    <Image
+                      src="/assets/icons/affiliate.svg"
+                      alt="favourite"
+                      width={16}
+                      height={16}
+                    />
+                  </div>
+                  <p className="text-white text-xs md:text-sm font-bold">
+                    Affiliate
+                  </p>
+                </div>
+              </div>
 
-              {/* ////////////////////////////////////////////// */}
-              {/* content */}
-              <div className="flex flex-col gap-3 md:gap-4 2xl:gap-6 pt-2">
-                {/* favourite * share * affiliate */}
-                <div className="flex items-center gap-2 md:gap-3 xl:gap-4">
-                  {/* favourite */}
-                  <div className="py-2 pl-2 pr-5 bg-[#000000] rounded-full flex items-center gap-2">
-                    <div className="p-2 rounded-full bg-[#E4E4E41A]">
-                      <Image
-                        src="/assets/icons/favourite.svg"
-                        alt="favourite"
-                        width={16}
-                        height={16}
-                      />
-                    </div>
-                    <p className="text-white text-xs md:text-sm font-bold">
-                      Favourite
-                    </p>
-                  </div>
-                  {/* share */}
-                  <div className="py-2 pl-2 pr-5 bg-[#000000] rounded-full flex items-center gap-2">
-                    <div className="p-2 rounded-full bg-[#E4E4E41A]">
-                      <Image
-                        src="/assets/icons/share.svg"
-                        alt="favourite"
-                        width={16}
-                        height={16}
-                      />
-                    </div>
-                    <p className="text-white text-xs md:text-sm font-bold">
-                      Share
-                    </p>
-                  </div>
-                  {/* affiliate */}
-                  <div className="py-2 pl-2 pr-5 bg-[#000000] rounded-full flex items-center gap-2">
-                    <div className="p-2 rounded-full bg-[#E4E4E41A]">
-                      <Image
-                        src="/assets/icons/affiliate.svg"
-                        alt="favourite"
-                        width={16}
-                        height={16}
-                      />
-                    </div>
-                    <p className="text-white text-xs md:text-sm font-bold">
-                      Affiliate
-                    </p>
-                  </div>
+              {/* progress and details */}
+              <div className="flex items-center justify-between w-full gap-6">
+                <div className="flex flex-col gap-2 lg:gap-4">
+                  <p className="text-xs md:text-sm text-[#D0D4EA]">
+                    Total Available (Sold/Total)
+                  </p>
+                  <p className="text-base md:text-lg lg:text-xl xl:text-[28px] text-white font-bold">
+                    <span className="text-[#F9C306]">{miningNumber}</span>/
+                    {totalMiningNumber}
+                  </p>
                 </div>
 
-                {/* progress and details */}
-                <div className="flex items-center gap-20">
-                  <div className="flex flex-col gap-2 lg:gap-4">
-                    <p className="text-xs md:text-sm text-[#D0D4EA]">
-                      Total Available (Sold/Total)
-                    </p>
-                    <p className="text-base md:text-lg lg:text-xl xl:text-[28px] text-white font-bold">
-                      <span className="text-[#F9C306]">{miningNumber}</span>/
-                      {totalMiningNumber}
-                    </p>
-                  </div>
-
-                  {/* radial progress */}
-                  <div className=" rounded-full bg-[#30373F]">
-                    <div
-                      className="radial-progress text-[#F9C306]"
-                      style={{ "--value": percentageOfMining }}
-                      role="progressbar"
-                    >
-                      <div className="bg-[#0e0c15] p-2 rounded-full">
-                        <p className="rounded-full px-2 py-3 bg-[#30373F] text-white text-base">
-                          {percentageOfMining}%
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* price & mint */}
-                <div className="flex flex-col gap-4 md:gap-6 lg:gap-8 mt-3">
-                  {/* minting details */}
-                  <div className="flex flex-col gap-2 md:gap-3 lg:gap-4 xl:gap-5">
-                    <div className="flex flex-col gap-2 md:gap-3 lg:gap-4">
-                      <p className="text-white text-sm md:text-base lg:text-lg font-semibold tracking-wide">
-                        <span className="text-[#F9C306]">Print</span>/Mint:
+                {/* radial progress */}
+                <div className=" rounded-full bg-[#30373F]">
+                  <div
+                    className="radial-progress text-[#F9C306]"
+                    style={{ "--value": percentageOfMining }}
+                    role="progressbar"
+                  >
+                    <div className="bg-[#0e0c15] p-2 rounded-full">
+                      <p className="rounded-full px-2 py-3 bg-[#30373F] text-white text-base">
+                        {percentageOfMining}%
                       </p>
-
-                      {/* ethereum text */}
-                      <div className="flex items-center gap-2">
-                        <Image
-                          src="/assets/icons/etherium.svg"
-                          alt="ethereum"
-                          width={32}
-                          height={32}
-                        />
-
-                        <p className="px-4 py-1 rounded-full bg-[#F9C306] text-[#15131D] capitalize">
-                          ethereum
-                        </p>
-                      </div>
-
-                      <h4 className="text-base md:text-lg lg:text-xl xl:text-2xl font-bold text-[#F9C306]">
-                        0.04 Ethereum{" "}
-                        <span className="font-normal text-sm md:text-base lg:text-lg 2xl:text-2xl text-white">
-                          (0.04 ETH)
-                        </span>
-                      </h4>
                     </div>
                   </div>
+                </div>
+              </div>
 
+              {/* price & mint */}
+              <div className="flex flex-col gap-4 md:gap-6 w-full">
+                {/* minting details */}
+                <div className="flex flex-col gap-2 md:gap-3 lg:gap-4 xl:gap-5">
+                  <div className="flex flex-col gap-2 md:gap-3 lg:gap-4">
+                    <p className="text-white text-sm md:text-base lg:text-lg font-semibold tracking-wide">
+                      <span className="text-[#F9C306]">Print</span>/Mint:
+                    </p>
+
+                    {/* ethereum text */}
+                    <div className="flex items-center gap-2">
+                      <Image
+                        src="/assets/icons/etherium.svg"
+                        alt="ethereum"
+                        width={32}
+                        height={32}
+                      />
+
+                      <p className="px-4 py-1 rounded-full bg-[#F9C306] text-[#15131D] capitalize">
+                        ethereum
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex flex-row items-center gap-10">
+                  <h4 className="text-sm md:text-base lg:text-lg xl:text-xl font-bold text-[#F9C306]">
+                    0.04 Ethereum{" "}
+                    <span className="font-normal text-sm md:text-base lg:text-lg 2xl:text-xl text-white">
+                      (0.04 ETH)
+                    </span>
+                  </h4>
                   {/* minting btn */}
                   <div className="flex items-center gap-3 md:gap-4 lg:gap-5">
                     {/* minting increase & decrease btn */}
-                    <div className="p-2 rounded-full bg-[#30373F] flex items-center gap-2 lg:gap-3">
+                    <div className="p-2 rounded-full bg-[#ffffff] flex items-center gap-2 lg:gap-3">
                       <button
                         onClick={() => {
                           setMinting((prev) => prev + 1);
@@ -257,7 +273,7 @@ export default function MintingDetails() {
                           alt="plus or increase btn"
                         />
                       </button>
-                      <p className="min-w-[20px] text-[#F9C306] text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-center">
+                      <p className="min-w-[20px] text-black text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-center">
                         {minting}
                       </p>
                       <button
@@ -277,72 +293,70 @@ export default function MintingDetails() {
                         />
                       </button>
                     </div>
-
-                    {/* mint now btn */}
-                    <button className="min-w-[170px] text-[#30373F] bg-[#F9C306] border border-[#F9C306] hover:bg-transparent hover:text-white transition duration-200 ease-in text-center text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl uppercase rounded-md  py-2 font-bold">
-                      mint now!
-                    </button>
                   </div>
-                  {/* public sale */}
-                  <div className="flex flex-col gap-3 md:gap-3 lg:gap-4 xl:gap-5 2xl:gap-6">
-                    <button className="px-3 py-2 md:px-4 lg:px-5 lg:py-3 2xl:px-6 2xl:py-4 bg-[#937300] hover:bg-[#F9C306] hover:text-[#30373F] transition duration-200 ease-in uppercase rounded-md text-white font-medium w-fit">
-                      public sale
-                    </button>
+                </div>
+                {/* public sale */}
+                <div className="flex flex-col gap-5 md:gap-6 lg:gap-6 xl:gap-5 2xl:gap-6 lg:px-10 mt-4 md:mt-0">
+                  <button className="px-3 py-2 md:px-4 lg:px-5 lg:py-3 2xl:px-6 2xl:py-4 bg-[#322907] hover:bg-[#4d4012] transition duration-200 ease-in uppercase rounded-md text-white font-medium w-full">
+                    public sale
+                  </button>
 
-                    <div className="flex items-center gap-5 md:gap-8 lg:gap-10 2xl:gap-14">
-                      <p className="text-sm md:text-base text-white uppercase">
-                        <span className="text-[#F9C306] font-medium">
-                          Price:
-                        </span>{" "}
-                        0.04 ETH
-                      </p>
-                      <p className="text-sm md:text-base text-white uppercase">
-                        <span className="text-[#F9C306] font-medium">
-                          Limit:
-                        </span>{" "}
-                        75 NFTs
-                      </p>
-                    </div>
+                  {/* white list button */}
+                  <div>
+                    {/* white list btn */}
+                    {whiteListBtn.map((btn, i) => (
+                      <CustomButtonVariant1
+                        key={btn.bgColor}
+                        textLabel={btn.textLabel}
+                        bgColor={btn.bgColor}
+                        textSize={btn.textSize}
+                        innerBtnPadding={btn.innerBtnPadding}
+                        bgVariantType={btn.bgVariantType}
+                        hoverTextColor={btn.hoverTextColor}
+                        elementColor={btn.elementColor}
+                        hoverElementColor={btn.hoverElementColor}
+                        showFullLines={btn.showFullLines}
+                        isFullWidth={true}
+                      />
+                    ))}
+                  </div>
+
+                  <div className="flex items-center justify-between gap-5 md:gap-8 px-5">
+                    <p className="text-sm md:text-base text-white uppercase">
+                      <span className="text-[#F9C306] font-semibold">
+                        Price:
+                      </span>{" "}
+                      0.04 ETH
+                    </p>
+                    <p className="text-sm md:text-base text-white uppercase">
+                      <span className="text-[#F9C306] font-semibold">
+                        Limit:
+                      </span>{" "}
+                      75 NFTs
+                    </p>
                   </div>
                 </div>
               </div>
-              {/* ////////////////////////////////////////////// */}
-            </motion.div>
+            </div>
+            {/* ////////////////////////////////////////////// */}
           </div>
           {/* avatar */}
-          <div className="lg:col-start-9 lg:col-end-13 2xl:col-start-6 text-white relative z-10 flex flex-col justify-between items-center lg:items-start">
-            {avatarData.map((data, i) => (
-              <motion.div
-                key={i}
-                variants={rightCardsVariant}
-                custom={i}
-                initial="initial"
-                whileInView="animate"
-              >
-                <div
-                  className={`
-                   ${i === 0 ? "lg:ml-32" : i === 1 ? "lg:ml-0" : "lg:ml-32"}
-                  flex flex-col justify-between`}
-                >
-                  <Image
-                    src={data.iconLink}
-                    alt="avatar"
-                    width={i === 1 ? 278 : 178}
-                    height={178}
-                  />
-                </div>
-              </motion.div>
-            ))}
+          <div className="lg:w-[22%] xl:w-[25%] 2xl:w-[30%] relative bottom-10 lg:bottom-10">
+            <Image
+              src={"/assets/images/mint-ch-2.png"}
+              alt=""
+              width={531}
+              height={805}
+              className="object-contain"
+            />
           </div>
         </div>
-        {/* large device showing this bg character */}
-        <Image
-          src={"/assets/images/mint-ch.webp"}
-          alt="mint character"
-          width={1920}
-          height={1080}
-          className="absolute w-full top-0 left-0 hidden lg:block h-[600px] md:h-[600px] lg:h-auto xl:h-[880px] 2xl:h-[980px] object-cover lg:opacity-40 xl:opacity-100"
-        />
+      </div>
+
+      <div className="absolute left-0 bottom-0 w-full h-2/5 bg-gradient-to-b from-transparent to-black z-[2]" />
+      {/* border */}
+      <div className="absolute top-0 left-0 z-10 w-full h-[3px]">
+        <FullWidthBorder />
       </div>
     </section>
   );
@@ -357,5 +371,19 @@ export const avatarData = [
   },
   {
     iconLink: "/assets/images/avatar-3.png",
+  },
+];
+
+const whiteListBtn = [
+  {
+    textLabel: "whitelist now",
+    bgColor: "#FFD026",
+    textSize: "text-sm lg:text-base 2xl:text-xl ",
+    innerBtnPadding: "px-10 h-8",
+    bgVariantType: "#232323",
+    hoverTextColor: "#ffffff",
+    elementColor: "#ffffff",
+    hoverElementColor: "#FFD026",
+    showFullLines: true,
   },
 ];

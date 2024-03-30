@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import Loader from "./loading";
 import Footer from "@/components/shared/Footer";
 import Navbars from "@/components/shared/Navbars";
+import BabydogeCards from "@/components/home/BabydogeCards";
 
 const Characters = dynamic(() => import("@/components/home/Characters"), {
   ssr: false,
@@ -40,8 +41,9 @@ export default function Home() {
         <Lootbox />
         <Characters />
         <LootBoxDetails />
-        <MintingDetails />
+        <BabydogeCards />
         <WeaponNft />
+        <MintingDetails />
         <Media />
         <Ecosystem />
         <Wallet />

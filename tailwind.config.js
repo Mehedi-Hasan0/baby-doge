@@ -17,6 +17,10 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        jost: "var(--font-jost), sans-serif",
+        khand: "var(--font-khand)",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

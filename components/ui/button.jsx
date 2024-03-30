@@ -18,6 +18,8 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        customAnimated:
+          "btn fadeInLeft relative bg-black border-none text-white overflow-hidden z-[1] font-semibold font-poppins text-center capitalize transition-all duration-500 ease-in-out",
       },
       size: {
         default: "h-9 px-4 py-2",

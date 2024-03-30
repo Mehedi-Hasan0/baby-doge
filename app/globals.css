@@ -4,9 +4,17 @@
 
 body {
   background-color: #000000;
-  font-family: var(--font-poppins);
+  font-family: var(--font-jost);
   overflow-x: hidden;
   box-sizing: border-box;
+}
+
+h1 {
+  font-family: var(--font-khand);
+}
+
+p {
+  font-family: var(--font-jost);
 }
 
 .mobile-link-container {
@@ -65,11 +73,6 @@ body {
   .banner-heading {
     font-size: 138px;
   }
-
-  .loot-box-container {
-    margin-inline: 176px;
-  }
-
   .loot-box-container {
     gap: 80px;
   }
@@ -79,8 +82,8 @@ body {
     height: 750px;
   }
 
-  .sec-7-container {
-    height: 900px;
+  .mint-card {
+    padding-inline: 64px;
   }
 }
 
@@ -91,7 +94,7 @@ body {
 }
 @media (1024px < width < 1536px) {
   .banner-heading {
-    font-size: 70px;
+    font-size: 60px;
   }
 }
 @media (768px < width < 1024px) {
@@ -101,13 +104,88 @@ body {
 }
 @media (640px < width < 768px) {
   .banner-heading {
-    font-size: 96px;
+    font-size: 56px;
   }
 }
 @media (0 < width < 640px) {
   .banner-heading {
     font-size: 56px;
   }
+}
+
+@media (420px <= width <= 640px) {
+  .min-card-bg {
+    background-size: cover;
+  }
+}
+@media (0 <= width <= 420px) {
+  .min-card-bg {
+    background-size: contain;
+  }
+}
+
+@-webkit-keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-20px);
+    transform: translateX(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-20px);
+    -ms-transform: translateX(-20px);
+    transform: translateX(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+    -ms-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+.fadeInLeft {
+  -webkit-animation-name: none; /* Disable animation by default */
+  animation-name: none; /* Disable animation by default */
+}
+
+.btn:hover {
+  color: var(--hoverClr);
+}
+
+.right-bottom-qube,
+.middle-qube {
+  background-color: var(--elemClr);
+}
+
+.right-bottom-qube:hover,
+.middle-qube:hover {
+  background-color: var(--hoverElemClr);
+}
+
+.btn:before {
+  position: absolute;
+  content: "";
+  width: 0%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+  background: var(--gradClr);
+  transition: all 500ms ease;
+}
+.btn:hover:before {
+  width: 100%;
 }
 
 @layer base {
@@ -179,6 +257,6 @@ body {
     @apply px-6 sm:px-10 md:px-12 lg:px-16 container;
   }
   .section-padding {
-    @apply py-16 sm:py-28 lg:py-10;
+    @apply py-16 sm:py-20 lg:py-10;
   }
 }
