@@ -84,6 +84,9 @@ p {
   .sec-7-container {
     height: 900px;
   }
+  .mint-card {
+    padding-inline: 64px;
+  }
 }
 
 @media (min-width: 1536px) {
@@ -109,6 +112,17 @@ p {
 @media (0 < width < 640px) {
   .banner-heading {
     font-size: 56px;
+  }
+}
+
+@media (420px <= width <= 640px) {
+  .min-card-bg {
+    background-size: cover;
+  }
+}
+@media (0 <= width <= 420px) {
+  .min-card-bg {
+    background-size: contain;
   }
 }
 

@@ -21,6 +21,7 @@ export default function CustomButtonVariant1({
   lineWidth = "148px",
   lineHeight = "42px",
   subLineHeight = "19px",
+  isFullWidth = false,
 }) {
   const buttonVariantRef = useRef(null);
   const [butttonHeight, setButttonHeight] = useState(null);
@@ -42,7 +43,11 @@ export default function CustomButtonVariant1({
     };
   }, [buttonVariantRef && typeof window !== "undefined" && window.innerWidth]);
   return (
-    <div className="relative p-1 min-h-[42px] min-w-[155px] max-w-[280px] flex justify-center items-center">
+    <div
+      className={`relative p-1 min-h-[42px] flex justify-center items-center ${
+        isFullWidth ? "w-full" : "min-w-[155px] max-w-[280px]"
+      }`}
+    >
       {/* left lines/border */}
       <div className=" absolute left-0 top-0 h-full min-h-[42px] w-full flex flex-col">
         <div className="w-[1px] h-full bg-[#f1f1f1]" />
