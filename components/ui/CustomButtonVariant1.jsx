@@ -42,7 +42,7 @@ export default function CustomButtonVariant1({
     };
   }, [buttonVariantRef && typeof window !== "undefined" && window.innerWidth]);
   return (
-    <div className="relative p-1 min-h-[42px] min-w-[155px] max-w-[250px] flex justify-center items-center">
+    <div className="relative p-1 min-h-[42px] min-w-[155px] max-w-[280px] flex justify-center items-center">
       {/* left lines/border */}
       <div className=" absolute left-0 top-0 h-full min-h-[42px] w-full flex flex-col">
         <div className="w-[1px] h-full bg-[#f1f1f1]" />
