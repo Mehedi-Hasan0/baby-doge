@@ -18,10 +18,10 @@ export default function Media() {
     },
   };
   return (
-    <section className="text-white overflow-hidden bg-[url('/assets/images/banner-bg-3.webp')] bg-cover bg-center pb-8">
+    <section className="text-white overflow-hidden bg-[url('/assets/images/banner-bg-3.webp')] bg-cover bg-center pb-8 relative mt-8">
       <div className="main-container">
         <motion.div
-          className="py-8 flex flex-col justify-center items-center"
+          className="py-10 flex flex-col justify-center items-center"
           variants={textVariant}
           initial="initial"
           whileInView="animate"
@@ -30,7 +30,7 @@ export default function Media() {
           // }}
         >
           <Image
-            src={"/assets/icons/text-top.svg"}
+            src={"/assets/icons/text-top-yellow.svg"}
             alt=""
             width={310}
             height={14}
@@ -101,6 +101,11 @@ export default function Media() {
             ))}
           </div>
         </motion.div>
+      </div>
+
+      <div className="absolute top-0 left-0 flex flex-row justify-between w-full h-[3px] z-20">
+        <div className="w-[10%] bg-yellow2 h-[3px]" />
+        <div className="w-[60%] bg-white h-[3px]" />
       </div>
     </section>
   );

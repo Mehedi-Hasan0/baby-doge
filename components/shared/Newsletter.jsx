@@ -17,7 +17,7 @@ export default function Newsletter() {
               </p>
             </div>
             {/*  */}
-            <div className="flex flex-col justify-center items-center gap-5 mt-7">
+            <div className="flex flex-col justify-center items-center gap-5 mt-7 lg:mt-12">
               <h3 className="font-bold text-[#F5FBF2] text-xl sm:text-2xl md:text-3xl lg:text-5xl">
                 Don't miss our latest news
               </h3>
