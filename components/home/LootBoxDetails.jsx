@@ -198,6 +198,9 @@ export default function LootBoxDetails() {
           </div>
         </div>
       </div>
+
+      {/* border-top */}
+      <div className="w-[10%] h-[3px] bg-yellow2 absolute top-0 left-0 z-10" />
     </section>
   );
 }
