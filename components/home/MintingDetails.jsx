@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import CustomButtonVariant1 from "../ui/CustomButtonVariant1";
+import FullWidthBorder from "../shared/FullWidthBorder";
 
 export default function MintingDetails() {
   const [miningNumber, setMiningNumber] = useState(823);
@@ -82,16 +83,7 @@ export default function MintingDetails() {
   // 434242 / 12
 
   return (
-    <section className="text-white overflow-hidden bg-[url('/assets/images/banner-bg-2.webp')] bg-cover bg-center mt-5 sm:mt-12 lg:mt-20 relative">
-      {/* left side lines */}
-      <div className="bg-[url('/assets/icons/leftLines.svg')] bg-cover absolute top-0 left-0 min-w-[778px] min-h-[900px] lg:min-h-[600px] xl:min-h-[700px] 2xl:min-h-[1000px] z-[2] opacity-10" />
-      {/* right side lines */}
-      <div className="bg-[url('/assets/icons/rightLines.svg')] bg-cover absolute top-0 right-0 min-w-[778px] min-h-[900px] lg:min-h-[600px] xl:min-h-[700px] 2xl:min-h-[1000px] z-[2] opacity-10" />
-      {/* left side dots */}
-      <div className="absolute bottom-8 sm:bottom-0 left-6 sm:left-10 md:left-12 lg:left-16 bg-[url('/assets/icons/bottomLeftDots.svg')] bg-cover z-[4] w-[130px] h-[35px] opacity-30" />
-      {/* right side dots */}
-      <div className="absolute top-32 right-6 sm:right-10 md:right-12 lg:right-16 bg-[url('/assets/icons/rightTopDots.svg')] bg-cover z-[4] w-[60px] h-[96px] opacity-30" />
-
+    <section className="text-white overflow-hidden bg-[url('/assets/images/banner-bg-2.webp')] bg-cover bg-center mt-5 sm:mt-12 md:mt-14 lg:mt-20 relative">
       {/* bottom gradient overlay */}
       <div
         className="h-[20%] absolute z-[3] bg-gradient-to-b from-transparent to-black bottom-0"
@@ -118,7 +110,7 @@ export default function MintingDetails() {
       {/* main content */}
       <div ref={mainContentRef} className="main-container relative z-10 ">
         {/* btn */}
-        <div className="py-12 sm:py-8 flex flex-col justify-center items-center gap-7">
+        <div className="py-12 sm:py-8 md:pt-10 flex flex-col justify-center items-center gap-7">
           <div>
             <Image
               src={"/assets/icons/text-top-yellow.svg"}
@@ -362,6 +354,10 @@ export default function MintingDetails() {
       </div>
 
       <div className="absolute left-0 bottom-0 w-full h-2/5 bg-gradient-to-b from-transparent to-black z-[2]" />
+      {/* border */}
+      <div className="absolute top-0 left-0 z-10 w-full h-[3px]">
+        <FullWidthBorder />
+      </div>
     </section>
   );
 }

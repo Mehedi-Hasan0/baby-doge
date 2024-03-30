@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import CustomButtonVariant1 from "../ui/CustomButtonVariant1";
 
 export default function Media() {
   const textVariant = {
@@ -17,7 +18,7 @@ export default function Media() {
     },
   };
   return (
-    <section className="text-white section-padding overflow-hidden">
+    <section className="text-white overflow-hidden bg-[url('/assets/images/banner-bg-3.webp')] bg-cover bg-center pb-8">
       <div className="main-container">
         <motion.div
           className="py-8 flex flex-col justify-center items-center"
@@ -40,7 +41,7 @@ export default function Media() {
         </motion.div>
 
         <motion.div
-          className="bg-[url('/assets/icons/frame.svg')] bg-contain bg-no-repeat w-full sm:min-h-[600px] mt-8 sm:mt-10 md:mt-12 lg:mt-16 p-4 sm:px-8 sm:py-10 lg:px-20 pb-10 relative"
+          className="bg-[url('/assets/icons/frame.svg')] bg-contain bg-no-repeat w-full sm:min-h-[600px] sm:mt-10 md:mt-12 lg:mt-16 p-4 sm:px-8 sm:py-10 lg:px-20 pb-10 relative"
           variants={textVariant}
           initial="initial"
           whileInView="animate"
@@ -81,33 +82,40 @@ export default function Media() {
           </div>
 
           {/* footer btn */}
-          <div className="relative py-10 flex justify-center">
-            <Button className="bg-gradient-to-b from-[#FFEE55] to-[#FF9900] rounded-none overflow-hidden banner-btn min-w-[130px] sm:min-w-[209px] min-h-[40px] flex justify-center items-center font-semibold relative transition-all duration-500 ease-in-out opacity-90 hover:opacity-100 cursor-pointer z-20 max-w-[200px]">
-              <Link
-                href="#"
-                className="w-full h-full uppercase text-yellowDarkRed leading-[1.9] relative z-20 text-xs sm:text-sm md:text-base"
-              >
-                whitelist now
-              </Link>
-              <Image
-                src={"/assets/icons/btn-shape.svg"}
-                width={209}
-                height={40}
-                alt="shape"
-                className="absolute mt-5"
+          {/* white list button */}
+          <div className="mt-7 flex justify-center">
+            {/* white list btn */}
+            {whiteListBtn.map((btn, i) => (
+              <CustomButtonVariant1
+                key={btn.bgColor}
+                textLabel={btn.textLabel}
+                bgColor={btn.bgColor}
+                textSize={btn.textSize}
+                innerBtnPadding={btn.innerBtnPadding}
+                bgVariantType={btn.bgVariantType}
+                hoverTextColor={btn.hoverTextColor}
+                elementColor={btn.elementColor}
+                hoverElementColor={btn.hoverElementColor}
+                showFullLines={btn.showFullLines}
               />
-            </Button>
-            {/* glow */}
-            <Image
-              src={"/assets/icons/glow.svg"}
-              alt=""
-              width={1509}
-              height={80}
-              className="absolute bottom-4"
-            />
+            ))}
           </div>
         </motion.div>
       </div>
     </section>
   );
 }
+
+const whiteListBtn = [
+  {
+    textLabel: "whitelist now",
+    bgColor: "#FFD026",
+    textSize: "text-sm lg:text-base 2xl:text-xl ",
+    innerBtnPadding: "px-10 h-8",
+    bgVariantType: "#232323",
+    hoverTextColor: "#ffffff",
+    elementColor: "#ffffff",
+    hoverElementColor: "#FFD026",
+    showFullLines: true,
+  },
+];
