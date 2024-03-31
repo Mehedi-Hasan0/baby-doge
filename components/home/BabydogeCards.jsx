@@ -61,8 +61,8 @@ export default function BabydogeCards() {
           </h5>
         </motion.div>
 
-        <div className="flex flex-col-reverse lg:flex-row gap-5 sm:gap-10 items-center">
-          <div className="flex flex-col gap-7 sm:gap-10 relative z-[7]">
+        <div className="flex flex-col-reverse lg:flex-row gap-5 sm:gap-10 items-center 2xl:px-28">
+          <div className="flex flex-col gap-7 sm:gap-10 relative z-[7] w-full lg:w-1/2">
             {babydogeCaracters.map((ch, i) => (
               <motion.div
                 key={i}
@@ -88,6 +88,7 @@ export default function BabydogeCards() {
           </div>
           {/*  */}
           <motion.div
+            className="w-full lg:w-1/2"
             variants={textVariant}
             initial="initial"
             whileInView="animate"
@@ -98,9 +99,9 @@ export default function BabydogeCards() {
             <Image
               src={"/assets/images/babydoge-ch.webp"}
               alt=""
-              width={1056}
-              height={1086}
-              className="relative bottom-7 sm:bottom-7 lg:ml-10 lg:bottom-16 z-[1]"
+              width={756}
+              height={786}
+              className="relative bottom-7 sm:bottom-7 lg:ml-10 lg:bottom-16 z-[1] lg:right-0 mx-auto lg:mx-0"
             />
           </motion.div>
         </div>

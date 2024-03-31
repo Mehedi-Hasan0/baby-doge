@@ -169,28 +169,17 @@ export default function Lootbox() {
               // }}
             >
               {/* video player */}
-              <Modal>
-                <ModalTrigger asChild>
-                  <div className="group relative flex justify-center items-center cursor-pointer">
-                    <Image
-                      src={"/assets/images/videoPlayer.webp"}
-                      alt="video player"
-                      width={642}
-                      height={365}
-                    />
-                    {/* // icon */}
-                    <div className="absolute z-[2] w-[72px] h-[72px] border-[1.5px] rounded-full border-transparent group-hover:border-white/40 transition duration-300 ease-in">
-                      <Image
-                        src={"/assets/icons/videoPlayerIcon.svg"}
-                        alt="player icon"
-                        width={76}
-                        height={76}
-                      />
-                    </div>
-                  </div>
-                </ModalTrigger>
-                <ModalContent>{"7nykO0FzsVQ"}</ModalContent>
-              </Modal>
+
+              <video
+                src="http://res.cloudinary.com/dlhexsnxq/video/upload/v1709961388/bannerbg_xgkahv.mp4"
+                autoPlay
+                muted
+                loop
+                poster="/assets/images/thumbnail2.png"
+                width={"100%"}
+                height={"100%"}
+                className="object-cover aspect-video max-h-[350px]"
+              />
 
               {/* white list btn */}
               {whiteListBtn.map((btn, i) => (

@@ -2,7 +2,7 @@
 
 import Banner from "@/components/home/Banner";
 import Ecosystem from "@/components/home/Ecosystem";
-// import Characters from "@/components/pages/home/Characters";
+import Characters from "@/components/home/Characters";
 import LootBoxDetails from "@/components/home/LootBoxDetails";
 import Lootbox from "@/components/home/Lootbox";
 import Media from "@/components/home/Media";
@@ -16,9 +16,9 @@ import Footer from "@/components/shared/Footer";
 import Navbars from "@/components/shared/Navbars";
 import BabydogeCards from "@/components/home/BabydogeCards";
 
-const Characters = dynamic(() => import("@/components/home/Characters"), {
-  ssr: false,
-});
+// const Characters = dynamic(() => import("@/components/home/Characters"), {
+//   ssr: false,
+// });
 
 export default function Home() {
   const [loading, setLoading] = useState(true);

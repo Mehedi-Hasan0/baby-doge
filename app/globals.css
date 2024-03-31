@@ -65,9 +65,17 @@ p {
   background-position: right;
 }
 
+/* swiper slider css */
 .swiper-wrapper {
   align-items: center;
 }
+
+div.swiper-button-prev,
+div.swiper-button-next {
+  color: #ffd026;
+}
+
+/* swiper slider css */
 
 @media (min-width: 1920px) {
   .banner-heading {
