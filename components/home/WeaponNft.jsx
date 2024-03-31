@@ -7,8 +7,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
-import "swiper/css/pagination";
-import { Autoplay } from "swiper/modules";
+import "swiper/css/navigation";
+import { Autoplay, Navigation } from "swiper/modules";
 import { weaponNftData } from "@/data";
 
 export default function WeaponNft() {
@@ -29,7 +29,7 @@ export default function WeaponNft() {
 
   useEffect(() => {
     import("swiper").then((SwiperModule) => {
-      SwiperModule.default.use([Autoplay]);
+      SwiperModule.default.use([Autoplay, Navigation]);
       setSwiperLoaded(true);
     });
 
@@ -75,7 +75,7 @@ export default function WeaponNft() {
         </div>
 
         {/* slider */}
-        <div className=" text-black">
+        <div className=" text-black xl:px-28 2xl:px-72">
           <Swiper
             slidesPerView={slides}
             spaceBetween={30}
@@ -87,7 +87,8 @@ export default function WeaponNft() {
             pagination={{
               clickable: true,
             }}
-            modules={[Autoplay]}
+            navigation={true}
+            modules={[Autoplay, Navigation]}
             onSlideChange={handleSlideChange}
             initialSlide={2}
             // modules={[Pagination]}

@@ -60,17 +60,17 @@ export const charactersData = [
     footerIcon: "/assets/icons/okx.svg",
     footerLabel: "BNB CHAIN",
   },
-  {
-    character: "/assets/images/charcters/ch-4.webp",
-    title: "BabyDoge",
-    label1: "KAD",
-    slug1: "18 / 6 / 8",
-    label2: "COMBAT SCORE",
-    slug2: "581",
-    badge: "/assets/images/badge-4.png",
-    footerIcon: "/assets/icons/okx.svg",
-    footerLabel: "BNB CHAIN",
-  },
+  // {
+  //   character: "/assets/images/charcters/ch-4.webp",
+  //   title: "BabyDoge",
+  //   label1: "KAD",
+  //   slug1: "18 / 6 / 8",
+  //   label2: "COMBAT SCORE",
+  //   slug2: "581",
+  //   badge: "/assets/images/badge-4.png",
+  //   footerIcon: "/assets/icons/okx.svg",
+  //   footerLabel: "BNB CHAIN",
+  // },
 ];
 
 export const weaponNftData = [
