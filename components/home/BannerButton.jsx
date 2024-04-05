@@ -5,6 +5,7 @@ import CustomButtonVariant1 from "../ui/CustomButtonVariant1";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Button } from "../ui/button";
+import WhitelistButton from "../shared/WhitelistButton";
 
 const BannerButton = () => {
   const buttonVariantRef = useRef(null);
@@ -28,20 +29,7 @@ const BannerButton = () => {
   }, [buttonVariantRef && typeof window !== "undefined" && window.innerWidth]);
   return (
     <>
-      {whiteListBtn.map((btn, i) => (
-        <CustomButtonVariant1
-          key={btn.bgColor}
-          textLabel={btn.textLabel}
-          bgColor={btn.bgColor}
-          textSize={btn.textSize}
-          innerBtnPadding={btn.innerBtnPadding}
-          bgVariantType={btn.bgVariantType}
-          hoverTextColor={btn.hoverTextColor}
-          elementColor={btn.elementColor}
-          hoverElementColor={btn.hoverElementColor}
-          showFullLines={btn.showFullLines}
-        />
-      ))}
+      <WhitelistButton isFullWidth={false} />
 
       <div className="flex flex-row items-center mt-5 md:mt-8 2xl:mt-16 gap-6">
         {/* katana logo */}
@@ -152,19 +140,5 @@ const logoData = [
   {
     icon: "/assets/images/baby-doge-logo.png",
     textLabel: "babydoge",
-  },
-];
-
-const whiteListBtn = [
-  {
-    textLabel: "whitelist now",
-    bgColor: "#FFD026",
-    textSize: "text-sm lg:text-base 2xl:text-xl ",
-    innerBtnPadding: "px-10 h-8",
-    bgVariantType: "#232323",
-    hoverTextColor: "#ffffff",
-    elementColor: "#ffffff",
-    hoverElementColor: "#FFD026",
-    showFullLines: true,
   },
 ];

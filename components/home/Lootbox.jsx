@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 import CustomButtonVariant1 from "../ui/CustomButtonVariant1";
 import { Modal, ModalContent, ModalTrigger } from "../ui/modal";
 import ShortBorder from "../shared/SortBorder";
+import WhitelistButton from "../shared/WhitelistButton";
 
 export default function Lootbox() {
   const [imgParentHover, setImageParentHover] = useState(
@@ -182,20 +183,7 @@ export default function Lootbox() {
               />
 
               {/* white list btn */}
-              {whiteListBtn.map((btn, i) => (
-                <CustomButtonVariant1
-                  key={btn.bgColor}
-                  textLabel={btn.textLabel}
-                  bgColor={btn.bgColor}
-                  textSize={btn.textSize}
-                  innerBtnPadding={btn.innerBtnPadding}
-                  bgVariantType={btn.bgVariantType}
-                  hoverTextColor={btn.hoverTextColor}
-                  elementColor={btn.elementColor}
-                  hoverElementColor={btn.hoverElementColor}
-                  showFullLines={btn.showFullLines}
-                />
-              ))}
+              <WhitelistButton isFullWidth={false} />
 
               {/* left card character for mobile */}
               <div className="relative">
